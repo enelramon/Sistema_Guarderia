@@ -1745,24 +1745,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wandy\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wandy\\Escritorio\\Nueva carpeta\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Proyecto_Guarderia\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
       "projectName": "Sistema_Guarderia",
-      "projectPath": "C:\\Users\\wandy\\Escritorio\\Nueva carpeta\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
-      "packagesPath": "C:\\Users\\wandy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wandy\\Escritorio\\Nueva carpeta\\Sistema_Guarderia\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\Proyecto_Guarderia\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Proyecto_Guarderia\\Sistema_Guarderia\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\wandy\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1821,7 +1823,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.410\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
