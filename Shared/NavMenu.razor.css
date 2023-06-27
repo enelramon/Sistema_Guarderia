@@ -11,6 +11,14 @@
     font-size: 1.1rem;
 }
 
+.nav-menu-transition {
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-menu-transition-collapsed {
+    transform: translateX(-100%);
+}
+
 .oi {
     width: 2rem;
     font-size: 1.1rem;

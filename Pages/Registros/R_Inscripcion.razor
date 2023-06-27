@@ -1,0 +1,138 @@
+@page "/R_Inscripcion"
+
+<h3 class="text-center mt-5">Formulario de Inscripción</h3>
+
+<EditForm Model="@inscripcion" OnValidSubmit="Guardar">
+    <div class="container mt-4">
+        <div class="card border-0 shadow-lg rounded-lg">
+            <div class="card-body rounded">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Fecha:</label>
+                            <InputDate @bind-Value="inscripcion.Fecha" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.Fecha)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <InputText @bind-Value="inscripcion.Nombre" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.Nombre)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Fecha de Nacimiento:</label>
+                            <InputDate @bind-Value="inscripcion.FechaNacimiento" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.FechaNacimiento)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Dirección:</label>
+                            <InputText @bind-Value="inscripcion.Direccion" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.Direccion)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Nombre de la Madre:</label>
+                            <InputText @bind-Value="inscripcion.NombreMadre" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.NombreMadre)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Teléfono de la Madre:</label>
+                            <InputText @bind-Value="inscripcion.TelefonoMadre" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.TelefonoMadre)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Lugar de Trabajo de la Madre:</label>
+                            <InputText @bind-Value="inscripcion.LugarDeTrabajoMadre"
+                                class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.LugarDeTrabajoMadre)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Nombre del Padre:</label>
+                            <InputText @bind-Value="inscripcion.NombrePadre" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.NombrePadre)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Teléfono del Padre:</label>
+                            <InputText @bind-Value="inscripcion.TelefonoPadre" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.TelefonoPadre)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Lugar de Trabajo del Padre:</label>
+                            <InputText @bind-Value="inscripcion.LugarDeTrabajoPadre"
+                                class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.LugarDeTrabajoPadre)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Seguro Médico:</label>
+                            <InputText @bind-Value="inscripcion.SeguroMedico" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.SeguroMedico)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Nombre del Pediatra:</label>
+                            <InputText @bind-Value="inscripcion.NombrePediatra" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.NombrePediatra)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Lugar de Trabajo del Pediatra:</label>
+                            <InputText @bind-Value="inscripcion.LugarDeTrabajoPediatra"
+                                class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.LugarDeTrabajoPediatra)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Caso de Emergencia:</label>
+                            <InputText @bind-Value="inscripcion.CasoDeEmergencia" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.CasoDeEmergencia)" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Padecimientos:</label>
+                            <InputText @bind-Value="inscripcion.Padece" class="form-control rounded-pill" />
+                            <ValidationMessage For="@(() => inscripcion.Padece)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <button type="shadow-lg" class="shadow btn btn-primary rounded-lg">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    private Inscripcion inscripcion = new Inscripcion();
+    private void Guardar(){}
+}

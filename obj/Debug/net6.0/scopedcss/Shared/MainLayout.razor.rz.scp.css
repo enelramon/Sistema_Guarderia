@@ -45,6 +45,43 @@ main[b-sx1bc7i4fg] {
     }
 }
 
+.card[b-sx1bc7i4fg] {
+    background-color: #f8f9fa;
+    border-radius: 20px;
+}
+
+.card[b-sx1bc7i4fg] {
+    background-color: #f8f9fa;
+    border-radius: 20px;
+}
+
+.btn-primary[b-sx1bc7i4fg] {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 20px;
+}
+
+.btn-primary:hover[b-sx1bc7i4fg] {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.form-control[b-sx1bc7i4fg] {
+    border-radius: 10px;
+}
+
+.rounded-pill[b-sx1bc7i4fg] {
+    border-radius: 50px !important;
+}
+
+.validation-message[b-sx1bc7i4fg] {
+    color: red;
+}
+
+.form-control:focus[b-sx1bc7i4fg] {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
 @media (min-width: 641px) {
     .page[b-sx1bc7i4fg] {
         flex-direction: row;

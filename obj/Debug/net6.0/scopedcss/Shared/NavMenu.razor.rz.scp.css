@@ -11,6 +11,14 @@
     font-size: 1.1rem;
 }
 
+.nav-menu-transition[b-45btu5mklz] {
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-menu-transition-collapsed[b-45btu5mklz] {
+    transform: translateX(-100%);
+}
+
 .oi[b-45btu5mklz] {
     width: 2rem;
     font-size: 1.1rem;
