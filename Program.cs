@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Sistema_Guarderia.Areas.Identity;
-using Sistema_Guarderia.Data;
+using Sistema_Guarderia.Contexto;
 using Radzen;
+using Sistema_Guarderia.BLL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
-builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddTransient<InscripcionBLL>();
-builder.Services.AddTransient<ServiciosBLL>();
 builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<InscripcionBLL>();
+builder.Services.AddScoped<ServiciosBLL>();
 
 
 var app = builder.Build();

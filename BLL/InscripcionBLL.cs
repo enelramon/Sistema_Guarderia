@@ -1,137 +1,138 @@
-
+using System;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Sistema_Guarderia.Data;
+using Sistema_Guarderia.Contexto;
 using Sistema_Guarderia.Models;
 #nullable disable // Para quitar el aviso de nulls
 
+namespace Sistema_Guarderia.BLL;
 public class InscripcionBLL
 {
-    
-        private ApplicationDbContext contexto;
+    private ApplicationDbContext contexto;
 
-        public InscripcionBLL(ApplicationDbContext _contexto)
+    public InscripcionBLL(ApplicationDbContext _contexto)
+    {
+        contexto = _contexto;
+    }
+
+    private bool Existe(int id)
+    {
+        bool existe = false;
+
+        try
         {
-            contexto = _contexto;
+            existe = contexto.Inscripcion.Any(c => c.InscripcionId == id);
         }
-
-        private bool Existe(int id)
+        catch (Exception)
         {
-            bool existe = false;
-
-            try
-            {
-                existe = contexto.Inscripcion.Any(c => c.InscripcionId == id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return existe;
+            throw;
         }
+        return existe;
+    }
 
-        public Inscripcion ExisteNombreIncripcion(string Nombre)
+    public Inscripcion ExisteNombreIncripcion(string Nombre)
+    {
+        Inscripcion existe;
+
+        try
         {
-            Inscripcion existe;
+            existe = contexto.Inscripcion
+            .Where(p => p.Nombre
+            .ToLower() == Nombre.ToLower())
+            .AsNoTracking()
+            .SingleOrDefault();
 
-            try
-            {
-                existe = contexto.Inscripcion              
-                .Where( p => p.Nombre
-                .ToLower() == Nombre.ToLower())
-                .AsNoTracking()
-                .SingleOrDefault();
-
-            }catch
-            {
-                throw;
-            }
-            return existe;
         }
-
-        public bool Guardar(Inscripcion inscripcion)
+        catch
         {
-            if (!Existe(inscripcion.InscripcionId))
-                return Insertar(inscripcion);
-            else
-                return Modificar(inscripcion);
+            throw;
         }
+        return existe;
+    }
 
-        private bool Insertar(Inscripcion inscripcion)
+    public bool Guardar(Inscripcion inscripcion)
+    {
+        if (!Existe(inscripcion.InscripcionId))
+            return Insertar(inscripcion);
+        else
+            return Modificar(inscripcion);
+    }
+
+    private bool Insertar(Inscripcion inscripcion)
+    {
+        bool Insertado = false;
+
+        try
         {
-            bool Insertado = false;
-
-            try
-            {
-                contexto.Inscripcion.Add(inscripcion);
-                Insertado = contexto.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Insertado;
+            contexto.Inscripcion.Add(inscripcion);
+            Insertado = contexto.SaveChanges() > 0;
         }
-
-        private bool Modificar(Inscripcion inscripcion)
+        catch (Exception)
         {
-            bool Insertado = false;
-
-            try
-            {
-                contexto.Entry(inscripcion).State = EntityState.Modified;
-                Insertado =  contexto.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Insertado;
+            throw;
         }
+        return Insertado;
+    }
 
-        public Inscripcion Buscar(int id)
+    private bool Modificar(Inscripcion inscripcion)
+    {
+        bool Insertado = false;
+
+        try
         {
-            return contexto.Inscripcion
-                .Where(s => s.InscripcionId == id && s.Estado == true)
-                .SingleOrDefault();
+            contexto.Entry(inscripcion).State = EntityState.Modified;
+            Insertado = contexto.SaveChanges() > 0;
         }
- 
-        public bool Eliminar(int id)
+        catch (Exception)
         {
-            bool Eliminado = false;
-
-            try
-            {
-                var inscripcion = Buscar(id);
-
-                if (inscripcion != null)
-                {
-                    inscripcion.Estado = false;
-                    Eliminado = contexto.SaveChanges() > 0;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Eliminado;
+            throw;
         }
+        return Insertado;
+    }
 
-        public List<Inscripcion> GetList(Expression<Func<Inscripcion, bool>> inscripcion)
+    public Inscripcion Buscar(int id)
+    {
+        return contexto.Inscripcion
+            .Where(s => s.InscripcionId == id && s.Estado == true)
+            .SingleOrDefault();
+    }
+
+    public bool Eliminar(int id)
+    {
+        bool Eliminado = false;
+
+        try
         {
-            List<Inscripcion> Lista = new List<Inscripcion>();
-            try
+            var inscripcion = Buscar(id);
+
+            if (inscripcion != null)
             {
-                Lista = contexto.Inscripcion
-                .Where(c => c.Estado == true)
-                .Where(inscripcion)
-                .AsNoTracking()
-                .ToList();
+                inscripcion.Estado = false;
+                Eliminado = contexto.SaveChanges() > 0;
             }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Lista;
         }
+        catch (Exception)
+        {
+            throw;
+        }
+        return Eliminado;
+    }
+
+    public List<Inscripcion> GetList(Expression<Func<Inscripcion, bool>> inscripcion)
+    {
+        List<Inscripcion> Lista = new List<Inscripcion>();
+        try
+        {
+            Lista = contexto.Inscripcion
+            .Where(c => c.Estado == true)
+            .Where(inscripcion)
+            .AsNoTracking()
+            .ToList();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+        return Lista;
+    }
 }
