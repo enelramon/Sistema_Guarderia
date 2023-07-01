@@ -1745,19 +1745,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC_USER21\\.nuget\\packages\\": {}
+    "C:\\Users\\wandy\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Escritorio\\TS\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+      "projectUniqueName": "c:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
       "projectName": "Sistema_Guarderia",
-      "projectPath": "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Escritorio\\TS\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
-      "packagesPath": "C:\\Users\\PC_USER21\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Escritorio\\TS\\Sistema_Guarderia\\obj\\",
+      "projectPath": "c:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+      "packagesPath": "C:\\Users\\wandy\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC_USER21\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\wandy\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1821,7 +1821,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.410\\RuntimeIdentifierGraph.json"
       }
     }
   }
