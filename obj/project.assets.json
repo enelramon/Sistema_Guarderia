@@ -1750,11 +1750,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+      "projectUniqueName": "c:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
       "projectName": "Sistema_Guarderia",
-      "projectPath": "c:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+      "projectPath": "c:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
       "packagesPath": "C:\\Users\\wandy\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\obj\\",
+      "outputPath": "c:\\Users\\wandy\\Sistema_Guarderia\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\wandy\\AppData\\Roaming\\NuGet\\NuGet.Config"

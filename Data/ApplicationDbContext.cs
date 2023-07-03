@@ -13,5 +13,6 @@ public class ApplicationDbContext : IdentityDbContext
     }
 
     public DbSet<Inscripcion> Inscripcion  { get; set; }
+    public DbSet<Servicio> Servicio  { get; set; }
 
 }
