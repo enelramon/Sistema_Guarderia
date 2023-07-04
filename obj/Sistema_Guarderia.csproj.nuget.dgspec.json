@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {}
+    "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {
+    "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+        "projectUniqueName": "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
         "projectName": "Sistema_Guarderia",
-        "projectPath": "C:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+        "projectPath": "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
         "packagesPath": "C:\\Users\\wandy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wandy\\Escritorio\\proyect\\Sistema_Guarderia\\obj\\",
+        "outputPath": "C:\\Users\\wandy\\Sistema_Guarderia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\wandy\\AppData\\Roaming\\NuGet\\NuGet.Config"

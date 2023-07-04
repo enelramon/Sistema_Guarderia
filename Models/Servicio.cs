@@ -18,6 +18,8 @@ namespace Sistema_Guarderia.Models
 
         [Required(ErrorMessage = "Ingrese el monto a pagar.")]
         public double PrecioServicio { get; set; }
+        public bool Estado { get; set; }
+
 
     }
 }
