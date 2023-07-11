@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {}
+    "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Documentos\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {
+    "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Documentos\\Sistema_Guarderia\\Sistema_Guarderia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+        "projectUniqueName": "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Documentos\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
         "projectName": "Sistema_Guarderia",
-        "projectPath": "C:\\Users\\wandy\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
-        "packagesPath": "C:\\Users\\wandy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wandy\\Sistema_Guarderia\\obj\\",
+        "projectPath": "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Documentos\\Sistema_Guarderia\\Sistema_Guarderia.csproj",
+        "packagesPath": "C:\\Users\\PC_USER21\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\PC_USER21\\OneDrive - Universidad Católica Nordestana (UCNE)\\Documentos\\Sistema_Guarderia\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\wandy\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\PC_USER21\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -57,6 +57,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[6.0.16, )"
+            },
+            "Radzen.Blazor": {
+              "target": "Package",
+              "version": "[4.13.5, )"
             }
           },
           "imports": [
@@ -78,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.410\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -17,17 +17,7 @@ public class ServiciosBLL
 
         private bool Existe(int id)
         {
-            bool existe = false;
-
-            try
-            {
-                existe = contexto.Servicio.Any(c => c.ServicioId == id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return existe;
+            return contexto.Servicio.Any(o => o.ServicioId == id);
         }
 
         public Servicio ExisteNombreServicio(string Nombre)
@@ -63,8 +53,10 @@ public class ServiciosBLL
 
             try
             {
-                contexto.Servicio.Add(servicios);
-                Insertado = contexto.SaveChanges() > 0;
+                if (contexto.Servicio.Add(servicios) != null)
+                {
+                    Insertado =  contexto.SaveChanges() > 0;
+                }
             }
             catch (Exception)
             {
@@ -75,18 +67,8 @@ public class ServiciosBLL
 
         private bool Modificar(Servicio servicios)
         {
-            bool Insertado = false;
-
-            try
-            {
-                contexto.Entry(servicios).State = EntityState.Modified;
-                Insertado =  contexto.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Insertado;
+            contexto.Entry(servicios).State = EntityState.Modified;
+            return contexto.SaveChanges()> 0;
         }
 
         public Servicio Buscar(int id)
@@ -104,7 +86,7 @@ public class ServiciosBLL
             {
                 var servicios = Buscar(id);
 
-                if (servicios != null)
+                if (servicios!= null)
                 {
                     servicios.Estado = false;
                     Eliminado = contexto.SaveChanges() > 0;
@@ -119,19 +101,9 @@ public class ServiciosBLL
 
         public List<Servicio> GetList(Expression<Func<Servicio, bool>> servicios)
         {
-            List<Servicio> Lista = new List<Servicio>();
-            try
-            {
-                Lista = contexto.Servicio
-                .Where(c => c.Estado == true)
-                .Where(servicios)
+            return contexto.Servicio
                 .AsNoTracking()
-                .ToList();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return Lista;
+                .Where(servicios)
+                .ToList();  
         }
 }

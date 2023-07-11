@@ -1,138 +1,120 @@
 @page "/R_Inscripcion"
 
-<h3 class="text-center mt-5">Formulario de Inscripción</h3>
+<RadzenCard class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.7s;">
+    <h3 class="text-center mt-5" Style="animation: slideInLeft 0.5s; animation-delay: 0.9s;" >Formulario de Inscripción</h3>
+</RadzenCard>
 
-<EditForm Model="@inscripcion" OnValidSubmit="Guardar">
-    <div class="container mt-4">
-        <div class="card border-0 shadow-lg rounded-lg">
-            <div class="card-body rounded">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Fecha:</label>
-                            <InputDate @bind-Value="inscripcion.Fecha" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.Fecha)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Nombre:</label>
-                            <InputText @bind-Value="inscripcion.Nombre" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.Nombre)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Fecha de Nacimiento:</label>
-                            <InputDate @bind-Value="inscripcion.FechaNacimiento" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.FechaNacimiento)" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Dirección:</label>
-                            <InputText @bind-Value="inscripcion.Direccion" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.Direccion)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Nombre de la Madre:</label>
-                            <InputText @bind-Value="inscripcion.NombreMadre" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.NombreMadre)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Teléfono de la Madre:</label>
-                            <InputText @bind-Value="inscripcion.TelefonoMadre" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.TelefonoMadre)" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Lugar de Trabajo de la Madre:</label>
-                            <InputText @bind-Value="inscripcion.LugarDeTrabajoMadre"
-                                class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.LugarDeTrabajoMadre)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Nombre del Padre:</label>
-                            <InputText @bind-Value="inscripcion.NombrePadre" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.NombrePadre)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Teléfono del Padre:</label>
-                            <InputText @bind-Value="inscripcion.TelefonoPadre" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.TelefonoPadre)" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Lugar de Trabajo del Padre:</label>
-                            <InputText @bind-Value="inscripcion.LugarDeTrabajoPadre"
-                                class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.LugarDeTrabajoPadre)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Seguro Médico:</label>
-                            <InputText @bind-Value="inscripcion.SeguroMedico" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.SeguroMedico)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Nombre del Pediatra:</label>
-                            <InputText @bind-Value="inscripcion.NombrePediatra" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.NombrePediatra)" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Lugar de Trabajo del Pediatra:</label>
-                            <InputText @bind-Value="inscripcion.LugarDeTrabajoPediatra"
-                                class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.LugarDeTrabajoPediatra)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Caso de Emergencia:</label>
-                            <InputText @bind-Value="inscripcion.CasoDeEmergencia" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.CasoDeEmergencia)" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Padecimientos:</label>
-                            <InputText @bind-Value="inscripcion.Padece" class="form-control rounded-pill" />
-                            <ValidationMessage For="@(() => inscripcion.Padece)" />
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-4">
-                    <button type="shadow-lg" class="shadow btn btn-primary rounded-lg">Guardar</button>
-                </div>
+<RadzenForm Model="@inscripcion" Submit="@Guardar">
+    <RadzenCard Class="mt-4 shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.8s;">
+
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.7s;">
+            <div class="col-md-4">
+                <RadzenLabel Text="Fecha:" />
+                <RadzenDatePicker @bind-Value="inscripcion.Fecha" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="La fecha es obligatoria" Component="inscripcion.Fecha" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Nombre:" />
+                <RadzenTextBox @bind-Value="inscripcion.Nombre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El nombre es obligatorio" Component="inscripcion.Nombre" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Fecha de Nacimiento:" />
+                <RadzenDatePicker @bind-Value="inscripcion.FechaNacimiento" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="La fecha de nacimiento es obligatoria"
+                    Component="inscripcion.FechaNacimiento" />
             </div>
         </div>
-    </div>
-</EditForm>
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.9s;">
+            <div class="col-md-4">
+                <RadzenLabel Text="Dirección:" />
+                <RadzenTextBox @bind-Value="inscripcion.Direccion" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="La dirección es obligatoria" Component="inscripcion.Direccion" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Nombre de la Madre:" />
+                <RadzenTextBox @bind-Value="inscripcion.NombreMadre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El nombre de la madre es obligatorio"
+                    Component="inscripcion.NombreMadre" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Teléfono de la Madre:" />
+                <RadzenTextBox @bind-Value="inscripcion.TelefonoMadre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El teléfono de la madre es obligatorio"
+                    Component="inscripcion.TelefonoMadre" />
+            </div>
+        </div>
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.7s;">
+            <div class="col-md-4">
+                <RadzenLabel Text="Lugar de Trabajo de la Madre:" />
+                <RadzenTextBox @bind-Value="inscripcion.LugarDeTrabajoMadre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El lugar de trabajo de la madre es obligatorio"
+                    Component="inscripcion.LugarDeTrabajoMadre" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Nombre del Padre:" />
+                <RadzenTextBox @bind-Value="inscripcion.NombrePadre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El nombre del padre es obligatorio"
+                    Component="inscripcion.NombrePadre" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Teléfono del Padre:" />
+                <RadzenTextBox @bind-Value="inscripcion.TelefonoPadre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El teléfono del padre es obligatorio"
+                    Component="inscripcion.TelefonoPadre" />
+            </div>
+        </div>
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.9s;">
+            <div class="col-md-4">
+                <RadzenLabel Text="Lugar de Trabajo del Padre:" />
+                <RadzenTextBox @bind-Value="inscripcion.LugarDeTrabajoPadre" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El lugar de trabajo del padre es obligatorio"
+                    Component="inscripcion.LugarDeTrabajoPadre" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Seguro Médico:" />
+                <RadzenTextBox @bind-Value="inscripcion.SeguroMedico" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El seguro médico es obligatorio" Component="inscripcion.SeguroMedico" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Nombre del Pediatra:" />
+                <RadzenTextBox @bind-Value="inscripcion.NombrePediatra" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El nombre del pediatra es obligatorio"
+                    Component="inscripcion.NombrePediatra" />
+            </div>
+        </div>
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.7s;">
+            <div class="col-md-4">
+                <RadzenLabel Text="Lugar de Trabajo del Pediatra:" />
+                <RadzenTextBox @bind-Value="inscripcion.LugarDeTrabajoPediatra" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El lugar de trabajo del pediatra es obligatorio"
+                    Component="inscripcion.LugarDeTrabajoPediatra" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Caso de Emergencia:" />
+                <RadzenTextBox @bind-Value="inscripcion.CasoDeEmergencia" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="El caso de emergencia es obligatorio"
+                    Component="inscripcion.CasoDeEmergencia" />
+            </div>
+            <div class="col-md-4">
+                <RadzenLabel Text="Padecimientos:" />
+                <RadzenTextBox @bind-Value="inscripcion.Padece" Class="rounded-pill custom-animation" />
+                <RadzenRequiredValidator Text="Los padecimientos son obligatorios" Component="inscripcion.Padece" />
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <RadzenButton Text="Guardar" Class="rounded-lg custom-animation"
+                Style="animation: fadeIn 0.5s; animation-delay: 4s;" />
+        </div>
+    </RadzenCard>
+</RadzenForm>
+
 
 @code {
     private Inscripcion inscripcion = new Inscripcion();
-    private void Guardar(){}
+
+    private void Guardar()
+    {
+        // Aquí puedes realizar las operaciones de guardado
+    }
 }

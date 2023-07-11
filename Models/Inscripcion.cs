@@ -55,7 +55,6 @@ namespace Sistema_Guarderia.Models
 
         [Required(ErrorMessage = "Ingrese los padecimientos.")]
         public string Padece { get; set; }
-
         public bool Estado { get; set; }
     }
 }

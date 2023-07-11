@@ -1,136 +1,128 @@
 @page "/RServicios"
 @inject ServiciosBLL serviciosBLL
 
+@inject NotificationService notification
+
 <h3 class="text-center mt-5">Registrar servicio</h3>
 
 <EditForm Model="@servicio" OnValidSubmit="Guardar">
   <div class="container mt-4">
     <div class="card border-0 shadow-lg rounded-lg">
       <div class="card-body rounded">
-          <div class="form-r ow align-items-center">
-                <div class="col-md-4">
-                    <label>ServicioId</label>
-                    <div class="input-group mb-3">
-                        <InputNumber @bind-Value="servicio.ServicioId" class="form-control rounded-pill" />
-                        <div class="input-group-append">
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-primary input-group-text"
-                                    @onclick="Buscar">Buscar</button>
-                            </div>
-                        </div>
-                    </div>
+        <div class="form-r ow align-items-center">
+          <div class="col-md-4">
+            <label>ServicioId</label>
+            <div class="input-group mb-3">
+              <InputNumber @bind-Value="servicio.ServicioId" class="form-control rounded-pill" />
+              <div class="input-group-append">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-primary input-group-text" @onclick="Buscar">Buscar</button>
                 </div>
-            <div class="col-md-4">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="form-group">
               <label>Fecha Servicio:</label>
-              <InputDate
-                @bind-Value="servicio.FechaServicio"
-                class="form-control rounded-pill"
-              />
+              <InputDate @bind-Value="servicio.FechaServicio" class="form-control rounded-pill" />
               <ValidationMessage For="@(() => servicio.FechaServicio)" />
             </div>
           </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label>Nombre Servicio:</label>
-              <InputText
-                @bind-Value="servicio.NombreServicio"
-                class="form-control rounded-pill"
-              />
-              <ValidationMessage For="@(() => servicio.NombreServicio)" />
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <label>Precio Servicio</label>
-            <InputNumber
-              @bind-Value="servicio.PrecioServicio"
-               class="form-control rounded-pill"
-            />
-            <ValidationMessage For="@(() => servicio.PrecioServicio)" />
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Nombre Servicio:</label>
+            <InputText @bind-Value="servicio.NombreServicio" class="form-control rounded-pill" />
+            <ValidationMessage For="@(() => servicio.NombreServicio)" />
           </div>
         </div>
 
-       
-    <div class="card-footer">
+        <div class="col-md-4">
+          <label>Precio Servicio</label>
+          <InputNumber @bind-Value="servicio.PrecioServicio" class="form-control rounded-pill" />
+          <ValidationMessage For="@(() => servicio.PrecioServicio)" />
+        </div>
+      </div>
+
+
+      <div class="card-footer">
         <div class="mb-3 text-center" display: inline-block>
-            <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">
-                <i class="oi oi-file" /> Nuevo
-            </button>
-            <button type="submit" class="btn btn-lg btn-success">
-                <i class="oi oi-document" /> Guardar
-            </button>
-            <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">
-                <i class="oi oi-trash" /> Eliminar
-            </button>
+          <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">
+            <i class="oi oi-file" /> Nuevo
+          </button>
+          <button type="submit" class="btn btn-lg btn-success">
+            <i class="oi oi-document" /> Guardar
+          </button>
+          <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">
+            <i class="oi oi-trash" /> Eliminar
+          </button>
         </div>
-    </div>
       </div>
     </div>
+  </div>
 
 </EditForm>
 @code {
- 
-       [Parameter]
-    public int ServicioId { get; set; }
 
-    private Servicio servicio = new Servicio();
-    public List<Servicio> lista { get; set; } = new List<Servicio>();
-        
-    protected override void OnInitialized()
-    {
-       // lista = serviciosBLL.GetList();
-        servicio.ServicioId = 0;
-        servicio.FechaServicio = DateTime.Now;
-        if (ServicioId > 0)
-        {
-            servicio.ServicioId = ServicioId;
-            Buscar();
-        }
-    }
-      void Buscar()
-    {
-        var encontrado = serviciosBLL.Buscar(servicio.ServicioId);
-        if (encontrado != null)
-        {
-            servicio = encontrado;
-            this.servicio = encontrado;
-         //   notificacion.ShowNotification("Registro encontrado", NotificationSeverity.Success);
-        }
-        else
-        {
-          //  notificacion.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
-        }
-    }
-        void Nuevo()
-    {
-        this.servicio = new Servicio();
-        //notificacion.ShowNotification("Nueva plantilla.", NotificationSeverity.Success);
+  [Parameter]
+  public int ServicioId { get; set; }
 
-    }
-       void Guardar()
+  private Servicio servicio = new Servicio();
+  public List<Servicio> lista { get; set; } = new List<Servicio>();
+
+  protected override void OnInitialized()
+  {
+    // lista = serviciosBLL.GetList();
+    servicio.ServicioId = 0;
+    servicio.FechaServicio = DateTime.Now;
+    if (ServicioId > 0)
     {
-        if (serviciosBLL.Guardar(servicio))
-        {
-            Nuevo();
-           // notificacion.ShowNotification("Guardado correctamente.");
-        }
-        else
-        {
-          //  notificacion.ShowNotification("No fue guardado.", NotificationSeverity.Error);
-        }
+      servicio.ServicioId = ServicioId;
+      Buscar();
     }
-     void Eliminar()
+  }
+  void Buscar()
+  {
+    var encontrado = serviciosBLL.Buscar(servicio.ServicioId);
+    if (encontrado != null)
     {
-      /*  if (serviciosBLL.Eliminar(servicio))
-        {
-            Nuevo();
-         //   notificacion.ShowNotification("Eliminado correctamente.");
-        }
-        else
-        {
-          //  notificacion.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
-        }*/
+      servicio = encontrado;
+      this.servicio = encontrado;
+      notification.ShowNotification("Registro encontrado", NotificationSeverity.Success);
     }
+    else
+    {
+      notification.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+    }
+  }
+  void Nuevo()
+  {
+    this.servicio = new Servicio();
+    //notificacion.ShowNotification("Nueva plantilla.", NotificationSeverity.Success);
+
+  }
+  void Guardar()
+  {
+    if (serviciosBLL.Guardar(servicio))
+    {
+      Nuevo();
+      // notificacion.ShowNotification("Guardado correctamente.");
+    }
+    else
+    {
+      // notificacion.ShowNotification("No fue guardado.", NotificationSeverity.Error);
+    }
+  }
+  void Eliminar()
+  {
+    if (serviciosBLL.Eliminar(servicio.ServicioId))
+    {
+      Nuevo();
+      notification.ShowNotification("Eliminado correctamente.");
+    }
+    else if(servicio.ServicioId == 0)
+    {
+      notification.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
+    }
+  }
 }

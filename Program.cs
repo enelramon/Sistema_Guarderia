@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Sistema_Guarderia.Areas.Identity;
 using Sistema_Guarderia.Data;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddTransient<InscripcionBLL>();
 builder.Services.AddTransient<ServiciosBLL>();
+builder.Services.AddScoped<NotificationService>();
 
 
 var app = builder.Build();
