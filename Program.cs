@@ -24,6 +24,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuth
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<InscripcionBLL>();
 builder.Services.AddScoped<ServiciosBLL>();
+builder.Services.AddScoped<ClienteBLL>();
 
 
 var app = builder.Build();
