@@ -127,6 +127,7 @@
     [Parameter]
     public int InscripcionId { get; set; }
     private Inscripcion inscripcion = new Inscripcion();
+    
     protected override void OnInitialized()
     {
         if (InscripcionId > 0)
@@ -151,4 +152,36 @@
             notification.ShowNotification("No se guardo correctamente.", NotificationSeverity.Error);
         }
     }
+    void Buscar()
+  {
+    var encontrado = inscripcionBLL.Buscar(inscripcion.InscripcionId);
+    if (encontrado != null)
+    {
+      inscripcion = encontrado;
+      this.inscripcion = encontrado;
+      notification.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+    }
+    else
+    {
+      notification.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+    }
+  }
+  void Nuevo()
+  {
+    this.inscripcion = new Inscripcion();
+    //notificacion.ShowNotification("Nueva plantilla.", NotificationSeverity.Success);
+
+  }
+  void Eliminar()
+  {
+    if (inscripcionBLL.Eliminar(inscripcion.InscripcionId))
+    {
+      Nuevo();
+      notification.ShowNotification("Eliminado correctamente.");
+    }
+    else if(inscripcion.InscripcionId == 0)
+    {
+      notification.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
+    }
+  }
 }
