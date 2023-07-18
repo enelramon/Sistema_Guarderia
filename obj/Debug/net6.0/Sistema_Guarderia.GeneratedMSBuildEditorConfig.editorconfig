@@ -20,8 +20,16 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[c:/Users/wandy/Sistema_Guarderia-2/Pages/Consultas/C_Clientes.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfQ2xpZW50ZXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [c:/Users/wandy/Sistema_Guarderia-2/Pages/Consultas/C_Consultas.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfQ29uc3VsdGFzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/wandy/Sistema_Guarderia-2/Pages/Consultas/C_Servicios.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXENfU2VydmljaW9zLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [c:/Users/wandy/Sistema_Guarderia-2/Pages/Index.razor]
