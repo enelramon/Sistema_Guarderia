@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nZ03NGsCObcf0Wy33JCjy9XeSf3QRKAONM24w0UJ4DnzafTH06oNL3oF6RbyL7nJEohGEfg8Cf7OEEJL4Dll5A==",
+  "dgSpecHash": "ktGxvj9dCA5nZuTwVxYAgkxd04NFLpZeBRmSPN0GA5qAkqqa7yJXeXSGerGROPCkuscwIO9Sk30n91qUp4or8w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj",
+  "projectFilePath": "c:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\wandy\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\wandy\\.nuget\\packages\\libsassbuilder\\2.0.1\\libsassbuilder.2.0.1.nupkg.sha512",

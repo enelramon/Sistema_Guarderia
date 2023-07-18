@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj": {}
+    "c:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj": {
+    "c:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj",
+        "projectUniqueName": "c:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj",
         "projectName": "Sistema_Guarderia",
-        "projectPath": "C:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj",
+        "projectPath": "c:\\Users\\wandy\\Sistema_Guarderia-2\\Sistema_Guarderia.csproj",
         "packagesPath": "C:\\Users\\wandy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\wandy\\Sistema_Guarderia-2\\obj\\",
+        "outputPath": "c:\\Users\\wandy\\Sistema_Guarderia-2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
