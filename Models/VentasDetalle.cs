@@ -21,7 +21,7 @@ namespace Sistema_Guarderia.Models
 
         public int ServicioId { get; set; }
         
-        public double Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
         public int PrecioArticuloComprado { get; }
         public decimal PrecioServicioComprado { get; set; }  
 

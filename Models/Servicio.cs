@@ -15,7 +15,7 @@ namespace Sistema_Guarderia.Models
         public DateTime FechaServicio { get; set; }
 
         [Required(ErrorMessage = "Ingrese el monto a pagar.")]
-        public double PrecioServicio { get; set; }
+        public decimal PrecioServicio { get; set; }
         public double? Descuento { get; set; }
         public bool Estado { get; set; }
     }

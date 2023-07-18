@@ -1,0 +1,128 @@
+@page "/RServicios"
+@inject ServiciosBLL serviciosBLL
+@inject NotificationService notification
+
+<RadzenForm Model="@servicio" Submit="@Guardar">
+  <div class="d-flex justify-content-center">
+    <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+      <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+        <h3 class="text-center" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Formulario de Servicios</h3>
+      </RadzenCard>
+      <dl />
+      <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center">
+              <RadzenLabel Text="Nombre del servicio:" Style="margin-right: 10px;" />
+              <RadzenTextBox @bind-Value="servicio.NombreServicio" Class="rounded-pill custom-animation" />
+            </div>
+            <RadzenRequiredValidator Text="El nombre del servicio es obligatorio" Component="servicio.NombreServicio" />
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center">
+              <RadzenLabel Text="Fecha:" Style="margin-right: 10px;" />
+              <RadzenDatePicker @bind-Value="servicio.FechaServicio" Class="rounded-pill custom-animation" />
+            </div>
+            <RadzenRequiredValidator Text="La fecha es obligatoria" Component="servicio.FechaNacimiento" />
+          </div>
+        </div>
+        <br>
+        <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center">
+              <RadzenLabel Text="Precio del servicio:" Style="margin-right: 10px;" />
+              <RadzenNumeric @bind-Value="servicio.PrecioServicio" Class="rounded-pill custom-animation" />
+            </div>
+            <RadzenRequiredValidator Text="El precio es obligatorio" Component="servicio.PrecioServicio" />
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex align-items-center">
+              <RadzenLabel Text="Descuento del servicio:" Style="margin-right: 10px;" />
+              <RadzenNumeric @bind-Value="servicio.Descuento" Class="rounded-pill custom-animation" />
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <button type="button" class="btn btn-lg btn-primary rounded-lg custom-animation"
+            Style="animation: fadeIn 0.5s; animation-delay: 0.1s" @onclick="Nuevo" title="Nuevo servicio">
+            <span class="oi oi-file"> Nuevo</span>
+          </button>
+          <button type="button" class="btn btn-lg btn-success rounded-lg custom-animation"
+            Style="animation: fadeIn 0.5s; animation-delay: 0.1s" @onclick="Guardar" title="Guardar servicio">
+            <span class="oi oi-document"> Guardar</span>
+          </button>
+          <button type="button" class="btn btn-lg btn-danger rounded-lg custom-animation"
+            Style="animation: fadeIn 0.5s; animation-delay: 0.1s" @onclick="Eliminar" title="Eliminar servicio">
+            <span class="oi oi-trash"> Eliminar</span>
+          </button>
+        </div>
+      </RadzenCard>
+    </RadzenCard>
+  </div>
+</RadzenForm>
+
+@code {
+
+  [Parameter]
+  public int ServicioId { get; set; }
+
+  private Servicio servicio = new Servicio();
+  public List<Servicio> lista { get; set; } = new List<Servicio>();
+
+  protected override void OnInitialized()
+  {
+    // lista = serviciosBLL.GetList();
+    servicio.ServicioId = 0;
+    servicio.FechaServicio = DateTime.Now;
+    if (ServicioId > 0)
+    {
+      servicio.ServicioId = ServicioId;
+      Buscar();
+    }
+  }
+  void Buscar()
+  {
+    var encontrado = serviciosBLL.Buscar(servicio.ServicioId);
+    if (encontrado != null)
+    {
+      servicio = encontrado;
+      this.servicio = encontrado;
+      notification.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+    }
+    else
+    {
+      notification.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+    }
+  }
+  void Nuevo()
+  {
+    this.servicio = new Servicio();
+    notification.ShowNotification("Nueva plantilla", NotificationSeverity.Success);
+
+  }
+  void Guardar()
+  {
+    if (serviciosBLL.Guardar(servicio))
+    {
+      Nuevo();
+      notification.ShowNotification("Guardado correctamente.");
+    }
+    else
+    {
+      notification.ShowNotification("No fue guardado.", NotificationSeverity.Error);
+    }
+  }
+  void Eliminar()
+  {
+    if (serviciosBLL.Eliminar(servicio.ServicioId))
+    {
+      Nuevo();
+      notification.ShowNotification("Eliminado correctamente.");
+    }
+    else if (servicio.ServicioId == 0)
+    {
+      notification.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
+    }
+  }
+}

@@ -1,103 +1,72 @@
 @page "/R_Clientes"
-
 @page "/R_Clientes/{ClienteId:int}"
+
 @inject ClienteBLL clienteBLL
 @inject NotificationService notification
 
-@* Registro de los suplidores *@
-@inject AuthenticationStateProvider Authentication
+<RadzenForm Model="@cliente" Submit="@Guardar">
 
- <EditForm Model="cliente" OnValidSubmit="Guardar">
-    <DataAnnotationsValidator />
-
-    <div class="card shadow-lg">
-        <div class="card ">
-            <div class="card-header ">
-                <h3 class="card-title">
-                    Registro De clientes
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-truck" viewBox="0 0 16 16">
-                        <path
-                            d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                    </svg>
-                </h3>
+    <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+        <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+            <h3 class="text-center" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Formulario de Clientes
+            </h3>
+        </RadzenCard>
+        <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+            <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
+                <div class="col-md-6">
+                    <RadzenLabel Text="Nombre del cliente:" />
+                    <RadzenTextBox @bind-Value="cliente.Nombre" Class="rounded-pill custom-animation" />
+                    <RadzenRequiredValidator Text="El nombre del cliente es requerido" Component="cliente.Nombre" />
+                </div>
+                <div class="col-md-6">
+                    <RadzenLabel Text="Dirección:" />
+                    <RadzenTextBox @bind-Value="cliente.Direccion" Class="rounded-pill custom-animation" />
+                    <RadzenRequiredValidator Text="La dirección es obligatoria" Component="cliente.Direccion" />
+                </div>
             </div>
-
-            <div class="card-body">
-                <hr>
-
-                <div class="row">
-                    <div class="col-3">
-                        <label>ClienteId</label>
-                        <div class="input-group">
-                            <InputNumber @bind-Value="cliente.ClienteId" class="form-control " />
-                            <div class="input-group-append">
-                                <button type="button" class="btn btn-lg btn-primary" @onclick="Buscar">Buscar</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-3">
-                        <label>Nombre Cliente</label>
-                        <InputText @bind-Value="cliente.Nombre" placeholder="Nombre Cliente" class="form-control" />
-                        <ValidationMessage For="@(() => cliente.Nombre)" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-3">
-                        <label>Dirección</label>
-                        <InputText @bind-Value="cliente.Direccion" placeholder="Dirección" class="form-control" />
-                        <ValidationMessage For="@(() => cliente.Direccion)" />
-                    </div>
-
-                    <div class="col-3">
-                        <label>Lugar de trabajo</label>
-                        <InputText @bind-Value="cliente.LugarTrabajo" placeholder="Lugar de trabajo"
-                            class="form-control" />
-                        <ValidationMessage For="@(() => cliente.LugarTrabajo)" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-3">
-                        <label>Teléfono</label>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-telephone-plus-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511zM12.5 1a.5.5 0 0 1 .5.5V3h1.5a.5.5 0 0 1 0 1H13v1.5a.5.5 0 0 1-1 0V4h-1.5a.5.5 0 0 1 0-1H12V1.5a.5.5 0 0 1 .5-.5z" />
-                        </svg>
-                        <InputText @bind-Value="cliente.Telefono" placeholder="Numero teléfonico"
-                            class="form-control" />
-                        <ValidationMessage For="@(() => cliente.Telefono)" />
-                    </div>
-
-                    <div class="col-3">
-                        <label>Fecha</label>
-                        <InputDate @bind-Value="cliente.Fecha_Registro" class="form-control col-8 bg-fechasColor" />
+            <br />
+            <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
+                <div class="col-md-11">
+                    <div class="d-flex justify-content-center">
+                        <RadzenLabel Text="Lugar de trabajo:" />
+                        <RadzenTextBox @bind-Value="cliente.LugarTrabajo" Class="rounded-pill custom-animation" />
+                        <RadzenRequiredValidator Text="El lugar de trabajo es obligatorio"
+                            Component="cliente.LugarTrabajo" />
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="card-footer">
-            <div class="form-group text-left" style="display: inline-block;">
-                <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo" title="Nuevo cliente">
-                    <span class="oi oi-file"> Nuevo</span>
-                </button>
-
-                <button type="submit" class="btn btn-lg btn-success" title="Guardar cliente">
-                    <span class="oi oi-document"> Guardar</span>
-                </button>
-
-                <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar" title="Eliminar cliente">
-                    <span class="oi oi-trash"> Eliminar</span>
-                </button>
+            <br />
+            <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
+                <div class="col-md-6">
+                    <RadzenLabel Text="Número de teléfono:" />
+                    <RadzenTextBox @bind-Value="cliente.Telefono" Placeholder="Número de teléfono"
+                        Class="rounded-pill custom-animation" />
+                    <RadzenRequiredValidator Text="El número de teléfono es obligatorio" Component="cliente.Telefono" />
+                </div>
+                <div class="col-md-6">
+                    <RadzenLabel Text="Fecha:" />
+                    <RadzenDatePicker @bind-Value="cliente.Fecha_Registro" Class="rounded-pill custom-animation" />
+                    <RadzenRequiredValidator Text="La fecha de registro es obligatoria"
+                        Component="cliente.Fecha_Registro" />
+                </div>
             </div>
-        </div>
-    </div>
-</EditForm>
-
+            <br />
+            <div class="card-footer d-flex justify-content-center">
+                <div class="form-group text-left" style="display: inline-block;">
+                    <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo" title="Nuevo cliente">
+                        <span class="oi oi-file"> Nuevo</span>
+                    </button>
+                    <button type="submit" class="btn btn-lg btn-success" title="Guardar cliente">
+                        <span class="oi oi-document"> Guardar</span>
+                    </button>
+                    <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar" title="Eliminar cliente">
+                        <span class="oi oi-trash"> Eliminar</span>
+                    </button>
+                </div>
+            </div>
+        </RadzenCard>
+    </RadzenCard>
+</RadzenForm>
 
 @code {
 
@@ -109,7 +78,6 @@
 
     protected override void OnInitialized()
     {
-        cliente.ClienteId = 0;
         if (ClienteId > 0)
         {
             cliente.ClienteId = ClienteId;
