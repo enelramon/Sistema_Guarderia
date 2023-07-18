@@ -15,5 +15,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Inscripcion> Inscripcion  { get; set; }
     public DbSet<Servicio> Servicio  { get; set; }
     public DbSet<Cliente> Cliente  { get; set; }
+    public DbSet<Ventas> Ventas  { get; set; }
+    public DbSet<Pago> Pago  { get; set; }
+    public DbSet<VentasDetalle> VentasDetalle  { get; set; }
 
 }
