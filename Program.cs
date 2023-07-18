@@ -25,6 +25,8 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<InscripcionBLL>();
 builder.Services.AddScoped<ServiciosBLL>();
 builder.Services.AddScoped<ClienteBLL>();
+builder.Services.AddScoped<VentasBLL>();
+ 
 
 
 var app = builder.Build();
