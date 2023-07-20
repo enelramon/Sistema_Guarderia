@@ -3,9 +3,12 @@
 
 @inject ClienteBLL clienteBLL
 @inject NotificationService notification
+@inject IJSRuntime js
+@inject SweetAlertService Swal
 
 <RadzenForm Model="@cliente" Submit="@Guardar">
 
+    <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
     <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
         <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
             <h3 class="text-center" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Formulario de Clientes
@@ -73,6 +76,8 @@
     [Parameter]
     public int ClienteId { get; set; }
 
+    private string Mensaje { get; set; }
+
     private Cliente cliente = new Cliente();
     public List<Cliente> lista { get; set; } = new List<Cliente>();
 
@@ -92,41 +97,66 @@
             cliente = encontrado;
             this.cliente = encontrado;
 
-            notification.ShowNotification("Registro encontrado", NotificationSeverity.Success);
         }
         else
         {
-            notification.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+
         }
     }
     void Nuevo()
     {
         this.cliente = new Cliente();
-        notification.ShowNotification("Nueva plantilla.", NotificationSeverity.Success);
-
+        //Nuevas notificaciones
+        js.MostrarMensaje("Nuevo archivo creado correctamente", "La accion fue realizada correctamente",
+        TipoMensajeSweetAlert.success);
     }
-    void Guardar()
+    async Task Guardar()
     {
-        if (clienteBLL.Guardar(cliente))
+        bool guardo = clienteBLL.Guardar(cliente);
+        Mensaje = "¿En verdad desear guardar los cambios?";
+
+        if (guardo)
         {
             Nuevo();
-            notification.ShowNotification("Guardado correctamente.");
         }
-        else
-        {
-            notification.ShowNotification("No fue guardado.", NotificationSeverity.Error);
-        }
+
     }
     void Eliminar()
     {
         if (clienteBLL.Eliminar(cliente.ClienteId))
         {
             Nuevo();
-            notification.ShowNotification("Eliminado correctamente.");
+
         }
         else if (cliente.ClienteId == 0)
         {
-            notification.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
+
+        }
+    }
+
+    //Metodo para verificar si el usuario guardo antes de cambiar de paginado
+    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        if (cliente.ClienteId > 0 || !string.IsNullOrEmpty(cliente.Nombre) || !string.IsNullOrEmpty(cliente.Direccion) ||
+        !string.IsNullOrEmpty(cliente.LugarTrabajo) || !string.IsNullOrEmpty(cliente.Telefono) || cliente.Fecha_Registro !=
+        null)
+        {
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Confirmación",
+                    Text = "¿Deseas abandonar la página y perder los cambios?",
+                    Icon = SweetAlertIcon.Warning,
+                    ShowCancelButton = true,
+                    ConfirmButtonText = "Sí, quiero salir",
+                    CancelButtonText = "No, quiero quedarme"
+                });
+
+            var confirmado = !string.IsNullOrEmpty(resultado.Value);
+
+            if (!confirmado)
+            {
+                context.PreventNavigation();
+            }
         }
     }
 }

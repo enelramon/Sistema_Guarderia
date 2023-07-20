@@ -349,8 +349,8 @@ namespace Sistema_Guarderia.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("PrecioServicio")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("PrecioServicio")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("ServicioId");
 
@@ -412,8 +412,8 @@ namespace Sistema_Guarderia.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Cantidad")
-                        .HasColumnType("REAL");
+                    b.Property<decimal>("Cantidad")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("INTEGER");

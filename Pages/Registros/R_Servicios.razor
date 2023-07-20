@@ -1,6 +1,9 @@
 @page "/RServicios"
 @inject ServiciosBLL serviciosBLL
 @inject NotificationService notification
+@inject SweetAlertService Swal
+
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
 
 <RadzenForm Model="@servicio" Submit="@Guardar">
   <div class="d-flex justify-content-center">
@@ -88,17 +91,17 @@
     {
       servicio = encontrado;
       this.servicio = encontrado;
-      notification.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+
     }
     else
     {
-      notification.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+
     }
   }
   void Nuevo()
   {
     this.servicio = new Servicio();
-    notification.ShowNotification("Nueva plantilla", NotificationSeverity.Success);
+
 
   }
   void Guardar()
@@ -106,11 +109,11 @@
     if (serviciosBLL.Guardar(servicio))
     {
       Nuevo();
-      notification.ShowNotification("Guardado correctamente.");
+
     }
     else
     {
-      notification.ShowNotification("No fue guardado.", NotificationSeverity.Error);
+
     }
   }
   void Eliminar()
@@ -118,11 +121,34 @@
     if (serviciosBLL.Eliminar(servicio.ServicioId))
     {
       Nuevo();
-      notification.ShowNotification("Eliminado correctamente.");
     }
     else if (servicio.ServicioId == 0)
     {
-      notification.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
+
+    }
+  }
+  //Metodo para verificar si el usuario guardo antes de cambiar de pagina
+  private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+  {
+    if (servicio.ServicioId > 0 || !string.IsNullOrEmpty(servicio.NombreServicio) || servicio.PrecioServicio > 0 ||
+    servicio.FechaServicio != null)
+    {
+      var resultado = await Swal.FireAsync(new SweetAlertOptions
+        {
+          Title = "Confirmación",
+          Text = "¿Deseas abandonar la página y perder los cambios?",
+          Icon = SweetAlertIcon.Warning,
+          ShowCancelButton = true,
+          ConfirmButtonText = "Sí, me quiero ir",
+          CancelButtonText = "No, espera"
+        });
+
+      var confirmado = !string.IsNullOrEmpty(resultado.Value);
+
+      if (!confirmado)
+      {
+        context.PreventNavigation();
+      }
     }
   }
 }

@@ -2,6 +2,9 @@
 
 @inject InscripcionBLL inscripcionBLL
 @inject NotificationService notification
+@inject SweetAlertService Swal
+
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" /> 
 
 <RadzenForm Model="@inscripcion" Submit="@Guardar">
     <div class="d-flex justify-content-center">
@@ -156,13 +159,13 @@
         {
             guardo = false;
             inscripcion = new Inscripcion();
-            notification.ShowNotification("Se guardo correctamente.", NotificationSeverity.Success);
+           
         }
         else
         {
             guardo = true;
             guardo = inscripcionBLL.Guardar(inscripcion);
-            notification.ShowNotification("No se guardo correctamente.", NotificationSeverity.Error);
+           
         }
     }
     void Buscar()
@@ -172,28 +175,52 @@
         {
             inscripcion = encontrado;
             this.inscripcion = encontrado;
-            notification.ShowNotification("Registro encontrado", NotificationSeverity.Success);
+            
         }
         else
         {
-            notification.ShowNotification("Registro no encontrado", NotificationSeverity.Warning);
+            
         }
     }
     void Nuevo()
     {
         this.inscripcion = new Inscripcion();
-        notification.ShowNotification("Nueva plantilla.", NotificationSeverity.Success);
+    
     }
     void Eliminar()
     {
         if (inscripcionBLL.Eliminar(inscripcion.InscripcionId))
         {
             Nuevo();
-            notification.ShowNotification("Eliminado correctamente.");
+          
         }
         else if (inscripcion.InscripcionId == 0)
         {
-            notification.ShowNotification("No fue eliminado.", NotificationSeverity.Error);
+            
+        }
+    }
+
+    //Metodo para verificar si el usuario guardo antes de cambiar de paginado
+    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        if (inscripcion.InscripcionId > 0 || !string.IsNullOrEmpty(inscripcion.Nombre) || !string.IsNullOrEmpty(inscripcion.Direccion) || !string.IsNullOrEmpty(inscripcion.LugarDeTrabajoMadre) || !string.IsNullOrEmpty(inscripcion.TelefonoMadre) || inscripcion.FechaNacimiento != null)
+        {
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Confirmación",
+                Text = "¿Deseas abandonar la página y perder los cambios?",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Sí, me quiero ir",
+                CancelButtonText = "No, espera"
+            });
+
+            var confirmado = !string.IsNullOrEmpty(resultado.Value);
+
+            if (!confirmado)
+            {
+                context.PreventNavigation();
+            }
         }
     }
 }

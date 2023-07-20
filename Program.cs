@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Sistema_Guarderia.Areas.Identity;
 using Sistema_Guarderia.Contexto;
+using CurrieTechnologies.Razor.SweetAlert2;
 using Radzen;
 using Sistema_Guarderia.BLL;
 
@@ -26,7 +27,7 @@ builder.Services.AddScoped<InscripcionBLL>();
 builder.Services.AddScoped<ServiciosBLL>();
 builder.Services.AddScoped<ClienteBLL>();
 builder.Services.AddScoped<VentasBLL>();
- 
+builder.Services.AddSweetAlert2();
 
 
 var app = builder.Build();
