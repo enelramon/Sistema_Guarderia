@@ -1,59 +1,59 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<style>
+    .circular-border {
+        border-radius: 5%;
+        overflow: hidden;
+    }
+
+    .circular-border {
+        border-radius: 5%;
+        overflow: hidden;
+    }
+</style>
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Sistema_Guarderia</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
     </div>
 </div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="R_Inscripcion">
-                <span class="oi oi-plus" aria-hidden="true"></span> Registro Incripción
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="RServicios">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Registrar Servicios
-            </NavLink>
-        </div>
+<br />
+<div class="circular-border">
+    <div class="nav-item px-3">
+        <RadzenPanelMenu class="flex-column" style="font-size: 12px; border: 1px solid #ccc; border-radius: 5px; padding: 5px; animation: slideInRight 0.5s; animation-delay: 0.1s;"> 
+            <div class="nav-item px-3">
+                <RadzenPanelMenuItem Text="Inscripcion" Icon="home"
+                    style="font-size: 12px; border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+                    <RadzenPanelMenuItem Text="Registro" Path="R_Inscripcion"
+                        style="font-size: 10px; border: 1px solid #ccc; border-radius: 2px; padding: 5px;" />
+                    <RadzenPanelMenuItem Text="Consulta" Path="C_Inscripcion"
+                        style="font-size: 10px; border: 1px solid #ccc; border-radius: 2px; padding: 5px;" />
+                </RadzenPanelMenuItem>
+            </div>
+            <div class="nav-item px-3">
+                <RadzenPanelMenuItem Text="Clientes" Icon="home"
+                    style="font-size: 12px; border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+                    <RadzenPanelMenuItem Text="Registro" Path="R_Clientes"
+                        style="font-size: 10px; border: 1px solid #ccc; border-radius: 2px; padding: 5px;" />
+                    <RadzenPanelMenuItem Text="Consulta" Path="C_Clientes"
+                        style="font-size: 10px; border: 1px solid #ccc; border-radius: 2px; padding: 5px;" />
+                </RadzenPanelMenuItem>
+            </div>
+            <div class="nav-item px-3">
+                <RadzenPanelMenuItem Text="Servicios" Icon="home"
+                    style="font-size: 12px; border: 1px solid #ccc; border-radius: 5px; padding: 5px;">
+                    <RadzenPanelMenuItem Text="Registro" Path="RServicios"
+                        style="font-size: 10px; border: 1px solid #ccc; border-radius: 2px; padding: 5px;" />
+                    <RadzenPanelMenuItem Text="Consulta" Path="C_Servicios"
+                        style="font-size: 10px; border: 1px solid #ccc; border-radius: 2px; padding: 5px;" />
+                </RadzenPanelMenuItem>
+            </div>
+        </RadzenPanelMenu>
+    </div>
 
-         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="R_Clientes">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Registrar Clientes
-            </NavLink>
-        </div>
-
-         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="C_Inscripcion">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Consulta de Inscripcion
-            </NavLink>
-        </div>
-
-         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="C_Clientes">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Consulta de Clientes
-            </NavLink>
-        </div>
-
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="C_Servicios">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Consulta de Servicios
-            </NavLink>
-        </div>
-    </nav>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
-
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
@@ -61,3 +61,5 @@
         collapseNavMenu = !collapseNavMenu;
     }
 }
+
+

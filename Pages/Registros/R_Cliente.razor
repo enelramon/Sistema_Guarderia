@@ -137,19 +137,30 @@
     //Metodo para verificar si el usuario guardo antes de cambiar de paginado
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
     {
-        if (cliente.ClienteId > 0 || !string.IsNullOrEmpty(cliente.Nombre) || !string.IsNullOrEmpty(cliente.Direccion) ||
-        !string.IsNullOrEmpty(cliente.LugarTrabajo) || !string.IsNullOrEmpty(cliente.Telefono) || cliente.Fecha_Registro !=
-        null)
+        int camposCompletos = 0;
+
+        if (!string.IsNullOrEmpty(cliente.Nombre))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(cliente.Direccion))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(cliente.LugarTrabajo))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(cliente.Telefono))
+            camposCompletos++;
+        if (cliente.Fecha_Registro != null)
+            camposCompletos++;
+
+        if (camposCompletos > 1)
         {
             var resultado = await Swal.FireAsync(new SweetAlertOptions
-                {
-                    Title = "Confirmación",
-                    Text = "¿Deseas abandonar la página y perder los cambios?",
-                    Icon = SweetAlertIcon.Warning,
-                    ShowCancelButton = true,
-                    ConfirmButtonText = "Sí, quiero salir",
-                    CancelButtonText = "No, quiero quedarme"
-                });
+            {
+                Title = "Confirmación",
+                Text = "¿Deseas abandonar la página y perder los cambios?",
+                Icon = SweetAlertIcon.Warning,
+                ShowCancelButton = true,
+                ConfirmButtonText = "Sí, quiero salir",
+                CancelButtonText = "No, quiero quedarme"
+            });
 
             var confirmado = !string.IsNullOrEmpty(resultado.Value);
 
@@ -159,4 +170,5 @@
             }
         }
     }
+
 }
