@@ -142,20 +142,20 @@
     if (camposCompletos > 1)
     {
       var resultado = await Swal.FireAsync(new SweetAlertOptions
-      {
+        {
           Title = "Confirmación",
           Text = "¿Deseas abandonar la página y perder los cambios?",
           Icon = SweetAlertIcon.Warning,
           ShowCancelButton = true,
           ConfirmButtonText = "Sí, me quiero ir",
           CancelButtonText = "No, espera"
-      });
+        });
 
       var confirmado = !string.IsNullOrEmpty(resultado.Value);
 
       if (!confirmado)
       {
-          context.PreventNavigation();
+        context.PreventNavigation();
       }
     }
   }

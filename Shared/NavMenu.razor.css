@@ -95,6 +95,18 @@
     border-radius: 10px;
 }
 
+/*Bordes con curvas*/
+
+.circular-border {
+    border-radius: 5%;
+    overflow: hidden;
+}
+
+.circular-border {
+    border-radius: 5%;
+    overflow: hidden;
+}
+
 @keyframes slideIn {
     0% {
         transform: translateY(-100%);
