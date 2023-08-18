@@ -6,8 +6,7 @@
 @inject IJSRuntime js
 @inject SweetAlertService Swal
 
-<RadzenForm Model="@cliente" Submit="@Guardar">
-
+<EditForm Model="@cliente" OnValidSubmit="@Guardar">
     <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
     <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
         <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
@@ -18,13 +17,13 @@
             <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
                 <div class="col-md-6">
                     <RadzenLabel Text="Nombre del cliente:" />
-                    <RadzenTextBox @bind-Value="cliente.Nombre" Class="rounded-pill custom-animation" />
-                    <RadzenRequiredValidator Text="El nombre del cliente es requerido" Component="cliente.Nombre" />
+                    <RadzenTextBox @bind-Value="cliente.Nombre" aria-required="true"
+                        Class="rounded-pill custom-animation" />
                 </div>
                 <div class="col-md-6">
                     <RadzenLabel Text="Dirección:" />
-                    <RadzenTextBox @bind-Value="cliente.Direccion" Class="rounded-pill custom-animation" />
-                    <RadzenRequiredValidator Text="La dirección es obligatoria" Component="cliente.Direccion" />
+                    <RadzenTextBox @bind-Value="cliente.Direccion" aria-required="true"
+                        Class="rounded-pill custom-animation" />
                 </div>
             </div>
             <br />
@@ -32,9 +31,8 @@
                 <div class="col-md-11">
                     <div class="d-flex justify-content-center">
                         <RadzenLabel Text="Lugar de trabajo:" />
-                        <RadzenTextBox @bind-Value="cliente.LugarTrabajo" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El lugar de trabajo es obligatorio"
-                            Component="cliente.LugarTrabajo" />
+                        <RadzenTextBox @bind-Value="cliente.LugarTrabajo" aria-required="true"
+                            Class="rounded-pill custom-animation" />
                     </div>
                 </div>
             </div>
@@ -48,9 +46,8 @@
                 </div>
                 <div class="col-md-6">
                     <RadzenLabel Text="Fecha:" />
-                    <RadzenDatePicker @bind-Value="cliente.Fecha_Registro" Class="rounded-pill custom-animation" />
-                    <RadzenRequiredValidator Text="La fecha de registro es obligatoria"
-                        Component="cliente.Fecha_Registro" />
+                    <RadzenDatePicker @bind-Value="cliente.Fecha_Registro" aria-required="true"
+                        Class="rounded-pill custom-animation" />
                 </div>
             </div>
             <br />
@@ -69,14 +66,12 @@
             </div>
         </RadzenCard>
     </RadzenCard>
-</RadzenForm>
+</EditForm>
 
 @code {
 
     [Parameter]
     public int ClienteId { get; set; }
-
-    private string Mensaje { get; set; }
 
     private Cliente cliente = new Cliente();
     public List<Cliente> lista { get; set; } = new List<Cliente>();
@@ -124,7 +119,14 @@
     {
         try
         {
-            if (!string.IsNullOrEmpty(cliente.Telefono) && !string.IsNullOrEmpty(cliente.Direccion) && !string.IsNullOrEmpty(cliente.LugarTrabajo))
+            if (!string.IsNullOrEmpty(cliente.Telefono) && !string.IsNullOrEmpty(cliente.Direccion) &&
+            !string.IsNullOrEmpty(cliente.LugarTrabajo))
+            {
+                this.cliente = new Cliente();
+                await js.MostrarMensaje("Nuevo archivo creado correctamente", "La accion fue realizada correctamente",
+                TipoMensajeSweetAlert.success);
+            }
+            else
             {
                 var resultado = await Swal.FireAsync(new SweetAlertOptions
                     {
@@ -134,40 +136,40 @@
                         ShowCancelButton = false,
                     });
             }
-            else if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) && string.IsNullOrEmpty(cliente.LugarTrabajo))
-            {
-                this.cliente = new Cliente();
-                js.MostrarMensaje("Nuevo archivo creado correctamente", "La accion fue realizada correctamente",
-                TipoMensajeSweetAlert.success);
-            }
         }
-        catch (Exception ex) { }
+        catch (Exception ex)
+        {
+            // Manejar la excepción de manera adecuada
+        }
     }
+
     async Task Guardar()
     {
-        
-            if (clienteBLL.Guardar(cliente))
-            {
-                Nuevo();
-                var resultado = await Swal.FireAsync(new SweetAlertOptions
-                {
-                    Title = "Accion completada",
-                    Text = "La informacion se guardo correctamente",
-                    Icon = SweetAlertIcon.Success,
-                    ShowCancelButton = false,
-                });
-            }
-            else if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) && string.IsNullOrEmpty(cliente.LugarTrabajo))
-            {
-                var resultado = await Swal.FireAsync(new SweetAlertOptions
+        if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) &&
+        string.IsNullOrEmpty(cliente.LugarTrabajo))
+        {
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
                 {
                     Title = "Accion no completada",
                     Text = "La informacion se pudo guardar correctamente",
                     Icon = SweetAlertIcon.Error,
                     ShowCancelButton = false,
                 });
-            }
-       
+        }
+        else if (!string.IsNullOrEmpty(cliente.Telefono) && !string.IsNullOrEmpty(cliente.Direccion) &&
+        !string.IsNullOrEmpty(cliente.LugarTrabajo))
+        {
+            await Nuevo();
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Accion completada",
+                    Text = "La informacion se guardo correctamente",
+                    Icon = SweetAlertIcon.Success,
+                    ShowCancelButton = false,
+                });
+            clienteBLL.Guardar(cliente);
+        }
+
     }
     async Task Eliminar()
     {

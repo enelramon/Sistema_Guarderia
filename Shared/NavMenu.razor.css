@@ -102,11 +102,6 @@
     overflow: hidden;
 }
 
-.circular-border {
-    border-radius: 5%;
-    overflow: hidden;
-}
-
 @keyframes slideIn {
     0% {
         transform: translateY(-100%);
