@@ -4,7 +4,7 @@
 @inject NotificationService notification
 @inject SweetAlertService Swal
 
-<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" /> 
+<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
 
 <RadzenForm Model="@inscripcion" Submit="@Guardar">
     <div class="d-flex justify-content-center">
@@ -118,13 +118,13 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
+
                     <button type="button" class="btn btn-lg btn-primary rounded-lg custom-animation"
                         Style="animation: fadeIn 0.5s; animation-delay: 0.1s" @onclick="Nuevo" title="Nuevo servicio">
                         <span class="oi oi-file"> Nuevo</span>
                     </button>
-                    <button type="button" class="btn btn-lg btn-success rounded-lg custom-animation"
-                        Style="animation: fadeIn 0.5s; animation-delay: 0.1s" @onclick="Guardar"
-                        title="Guardar servicio">
+                    <button type="submit" class="btn btn-lg btn-success rounded-lg custom-animation"
+                        Style="animation: fadeIn 0.5s; animation-delay: 0.1s" title="Guardar servicio">
                         <span class="oi oi-document"> Guardar</span>
                     </button>
                     <button type="button" class="btn btn-lg btn-danger rounded-lg custom-animation"
@@ -155,19 +155,20 @@
     private void Guardar()
     {
         bool guardo = true;
-        if (inscripcion.InscripcionId == null)
+        if (inscripcion.InscripcionId == 0)
         {
             guardo = false;
             inscripcion = new Inscripcion();
-           
+
         }
         else
         {
             guardo = true;
             guardo = inscripcionBLL.Guardar(inscripcion);
-           
+
         }
     }
+
     void Buscar()
     {
         var encontrado = inscripcionBLL.Buscar(inscripcion.InscripcionId);
@@ -175,28 +176,28 @@
         {
             inscripcion = encontrado;
             this.inscripcion = encontrado;
-            
+
         }
         else
         {
-            
+
         }
     }
     void Nuevo()
     {
         this.inscripcion = new Inscripcion();
-    
+
     }
     void Eliminar()
     {
         if (inscripcionBLL.Eliminar(inscripcion.InscripcionId))
         {
             Nuevo();
-          
+
         }
         else if (inscripcion.InscripcionId == 0)
         {
-            
+
         }
     }
 
@@ -219,14 +220,14 @@
         if (camposCompletos > 1)
         {
             var resultado = await Swal.FireAsync(new SweetAlertOptions
-            {
-                Title = "Confirmación",
-                Text = "¿Deseas abandonar la página y perder los cambios?",
-                Icon = SweetAlertIcon.Warning,
-                ShowCancelButton = true,
-                ConfirmButtonText = "Sí, me quiero ir",
-                CancelButtonText = "No, espera"
-            });
+                {
+                    Title = "Confirmación",
+                    Text = "¿Deseas abandonar la página y perder los cambios?",
+                    Icon = SweetAlertIcon.Warning,
+                    ShowCancelButton = true,
+                    ConfirmButtonText = "Sí, me quiero ir",
+                    CancelButtonText = "No, espera"
+                });
 
             var confirmado = !string.IsNullOrEmpty(resultado.Value);
 

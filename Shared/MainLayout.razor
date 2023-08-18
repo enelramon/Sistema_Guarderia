@@ -1,16 +1,32 @@
 ﻿@inherits LayoutComponentBase
+@using Blazored.Toast.Configuration
 
 <PageTitle>Sistema_Guarderia</PageTitle>
 
 <div class="page">
+    <AuthorizeView>
+        <Authorized>
+            <div class="sidebar" style="animation: slideInUp 0.5s; animation-delay: 0.1s;">
+                <NavMenu />
+            </div>
 
-    <div class="sidebar" style="animation: slideInUp 0.5s; animation-delay: 0.1s;">
-        <NavMenu />
-    </div>
-
-    <main>
-        <article class="content px-4" style="animation: slideInUp 0.5s; animation-delay: 0.1s;">
-            @Body
-        </article>
-    </main>
+            <main>
+                <div class="top-row px-1">
+                    <LoginDisplay />
+                </div>
+                <article class="content px-4">
+                    @Body
+                </article>
+            </main>
+        </Authorized>
+        <NotAuthorized>
+            
+                <div class="container row" Style="animation: slideInLeft 0.9s; animation-delay: 0.2s; margin-right:303px; margin-left:303px">
+                    <div class="center-row px-1">
+                        <LoginDisplay />
+                    </div>
+                </div>
+            
+        </NotAuthorized>
+    </AuthorizeView>
 </div>

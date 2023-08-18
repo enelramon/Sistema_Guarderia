@@ -10,21 +10,19 @@
     </RadzenCard>
 </div>
 
-@code{
-    protected override void OnInitialized()
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        NotifiacionInit();
-    }
-
-    private async Task NotifiacionInit()
-    {
-        var resultado = await Swal.FireAsync(new SweetAlertOptions
+        if (firstRender)
         {
-            Title = "Bienvenido!",
-            Text = "Este sistema te ayudara a tener un mayor control de tu guarderia",
-            Icon = SweetAlertIcon.Success,
-            ShowCancelButton = false
-        });
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Bienvenido!",
+                Text = "Este sistema te ayudara a tener un mayor control de tu guarderia",
+                Icon = SweetAlertIcon.Success,
+                ShowCancelButton = false
+            });
+        }
     }
 }
 
