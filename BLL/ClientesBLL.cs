@@ -39,7 +39,7 @@ public class ClienteBLL
         {
             throw;
         }
-        return existe;
+        return existe!;
     }
 
     public bool Guardar(Cliente cliente)
@@ -74,7 +74,7 @@ public class ClienteBLL
         return contexto.SaveChanges() > 0;
     }
 
-    public Cliente Buscar(int id)
+    public Cliente? Buscar(int id)
     {
         return contexto.Cliente
             .Where(s => s.ClienteId == id && s.Visible == true)

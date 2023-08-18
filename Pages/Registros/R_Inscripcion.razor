@@ -203,7 +203,20 @@
     //Metodo para verificar si el usuario guardo antes de cambiar de paginado
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
     {
-        if (inscripcion.InscripcionId > 0 || !string.IsNullOrEmpty(inscripcion.Nombre) || !string.IsNullOrEmpty(inscripcion.Direccion) || !string.IsNullOrEmpty(inscripcion.LugarDeTrabajoMadre) || !string.IsNullOrEmpty(inscripcion.TelefonoMadre) || inscripcion.FechaNacimiento != null)
+        int camposCompletos = 0;
+
+        if (!string.IsNullOrEmpty(inscripcion.Nombre))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(inscripcion.Direccion))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(inscripcion.LugarDeTrabajoMadre))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(inscripcion.TelefonoMadre))
+            camposCompletos++;
+        if (inscripcion.FechaNacimiento != null)
+            camposCompletos++;
+
+        if (camposCompletos > 1)
         {
             var resultado = await Swal.FireAsync(new SweetAlertOptions
             {

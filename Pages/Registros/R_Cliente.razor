@@ -81,65 +81,142 @@
     private Cliente cliente = new Cliente();
     public List<Cliente> lista { get; set; } = new List<Cliente>();
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         if (ClienteId > 0)
         {
             cliente.ClienteId = ClienteId;
-            Buscar();
+            await Buscar();
         }
     }
-    void Buscar()
+    async Task Buscar()
     {
         var encontrado = clienteBLL.Buscar(cliente.ClienteId);
-        if (encontrado != null)
+        try
         {
-            cliente = encontrado;
-            this.cliente = encontrado;
-
+            if (encontrado != null)
+            {
+                cliente = encontrado;
+                this.cliente = encontrado;
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                    {
+                        Title = "Accion completada",
+                        Text = "La informacion se busco correctamente",
+                        Icon = SweetAlertIcon.Success,
+                        ShowCancelButton = false,
+                    });
+            }
+            else if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) &&
+            string.IsNullOrEmpty(cliente.LugarTrabajo))
+            {
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                    {
+                        Title = "Accion no completada",
+                        Text = "La informacion no pudo encontrar",
+                        Icon = SweetAlertIcon.Error,
+                        ShowCancelButton = false,
+                    });
+            }
         }
-        else
-        {
-
-        }
+        catch (Exception ex) { }
     }
-    void Nuevo()
+    async Task Nuevo()
     {
-        this.cliente = new Cliente();
-        //Nuevas notificaciones
-        js.MostrarMensaje("Nuevo archivo creado correctamente", "La accion fue realizada correctamente",
-        TipoMensajeSweetAlert.success);
+        try
+        {
+            if (!string.IsNullOrEmpty(cliente.Telefono) && !string.IsNullOrEmpty(cliente.Direccion) && !string.IsNullOrEmpty(cliente.LugarTrabajo))
+            {
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                    {
+                        Title = "Accion no completada",
+                        Text = "No se pudo realizar una lamina nueva",
+                        Icon = SweetAlertIcon.Error,
+                        ShowCancelButton = false,
+                    });
+            }
+            else if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) && string.IsNullOrEmpty(cliente.LugarTrabajo))
+            {
+                this.cliente = new Cliente();
+                js.MostrarMensaje("Nuevo archivo creado correctamente", "La accion fue realizada correctamente",
+                TipoMensajeSweetAlert.success);
+            }
+        }
+        catch (Exception ex) { }
     }
     async Task Guardar()
     {
-        bool guardo = clienteBLL.Guardar(cliente);
-        Mensaje = "¿En verdad desear guardar los cambios?";
-
-        if (guardo)
-        {
-            Nuevo();
-        }
-
+        
+            if (clienteBLL.Guardar(cliente))
+            {
+                Nuevo();
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Accion completada",
+                    Text = "La informacion se guardo correctamente",
+                    Icon = SweetAlertIcon.Success,
+                    ShowCancelButton = false,
+                });
+            }
+            else if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) && string.IsNullOrEmpty(cliente.LugarTrabajo))
+            {
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Accion no completada",
+                    Text = "La informacion se pudo guardar correctamente",
+                    Icon = SweetAlertIcon.Error,
+                    ShowCancelButton = false,
+                });
+            }
+       
     }
-    void Eliminar()
+    async Task Eliminar()
     {
-        if (clienteBLL.Eliminar(cliente.ClienteId))
+        try
         {
-            Nuevo();
+            if (clienteBLL.Eliminar(cliente.ClienteId))
+            {
+                Nuevo();
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                    {
+                        Title = "Accion completada",
+                        Text = "La informacion se elimino correctamente",
+                        Icon = SweetAlertIcon.Success,
+                        ShowCancelButton = false,
+                    });
 
+            }
+            else if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) &&
+            string.IsNullOrEmpty(cliente.LugarTrabajo))
+            {
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                    {
+                        Title = "Accion no completada",
+                        Text = "La informacion no se elimino correctamente",
+                        Icon = SweetAlertIcon.Error,
+                        ShowCancelButton = false,
+                    });
+            }
         }
-        else if (cliente.ClienteId == 0)
-        {
-
-        }
+        catch (Exception ex) { }
     }
 
     //Metodo para verificar si el usuario guardo antes de cambiar de paginado
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
     {
-        if (cliente.ClienteId > 0 || !string.IsNullOrEmpty(cliente.Nombre) || !string.IsNullOrEmpty(cliente.Direccion) ||
-        !string.IsNullOrEmpty(cliente.LugarTrabajo) || !string.IsNullOrEmpty(cliente.Telefono) || cliente.Fecha_Registro !=
-        null)
+        int camposCompletos = 0;
+
+        if (!string.IsNullOrEmpty(cliente.Nombre))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(cliente.Direccion))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(cliente.LugarTrabajo))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(cliente.Telefono))
+            camposCompletos++;
+        if (cliente.Fecha_Registro != null)
+            camposCompletos++;
+
+        if (camposCompletos > 1)
         {
             var resultado = await Swal.FireAsync(new SweetAlertOptions
                 {
@@ -159,4 +236,5 @@
             }
         }
     }
+
 }
