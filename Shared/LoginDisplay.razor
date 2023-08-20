@@ -1,26 +1,31 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 
-<div Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+<div Style="animation: slideInLeft 0.9s; animation-delay: 0.1s;">
     <AuthorizeView>
-        <Authorized>    
-            <a method="get" href="Identity/Account/Manage" class="oi oi-person text-primary nav-link btn btn-link"> Perfil</a>
+        <Authorized>
+            <a method="get" href="Identity/Account/Manage" class="oi oi-person text-primary nav-link btn btn-link">
+                Perfil</a>
             <form method="post" action="Identity/Account/LogOut">
-                <button type="submit" class="oi oi-account-logout  text-primary nav-link btn btn-link" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+                <button type="submit" class="oi oi-account-logout  text-primary nav-link btn btn-link"
+                    Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
                     <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar seccion</button>
             </form>
         </Authorized>
         <NotAuthorized>
+            <img src="logo.png" width="260" height="200" Style="animation: slideInLeft 0.9s; animation-delay: 0.1s;"/>
+            <br />
+            <br />
             <div class="center-container">
-                <a type="button" class="btn btn-success h3" href="Identity/Account/Login"
-                    Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Iniciar seccion</a>
-                <h5>
+                <a type="button" class="btn btn-success h3 btn-lg shadow-lg p-2" href="Identity/Account/Login" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;  margin-left: 77px; border-radius: 30px;
+                overflow: hidden;">Iniciar seccion</a>
+                <div class="text-shadow" style="margin-left: 20px;">
                     <br />
-                    <br>
-                    No tienes una cuenta?<a class="h5" href="Identity/Account/Register"
-                        Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Registrate.</a>
-                </h5>
+                    <h5>
+                        No tienes una cuenta?<a class="h5" href="Identity/Account/Register"
+                            Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Registrate.</a>
+                    </h5>
+                </div>
             </div>
         </NotAuthorized>
     </AuthorizeView>
 </div>
-
