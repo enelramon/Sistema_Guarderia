@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(180deg, rgb(5, 23, 103) 0%, #089767 70%);
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .page::before {
@@ -16,11 +16,11 @@
   height: 500px;
   background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
   transform: scaleY(-1);
-  animation: wave-animation 2s linear infinite alternate;
+  animation: wave-animations 2s linear infinite alternate;
   border-radius: 50px;
 }
 
-@keyframes wave-animation {
+@keyframes wave-animations {
   0% {
     transform: scaleY(-1) translateY(0);
   }
@@ -39,7 +39,7 @@
   height: 500px;
   background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
   transform: scaleX(-1);
-  animation: wave-animation 2s linear infinite alternate;
+  animation: wave-animations 2s linear infinite alternate;
   border-radius: 50px;
 }
 
@@ -53,6 +53,7 @@
   align-items: center;
   justify-content: center;
   shape-outside: margin-box 0px 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
 }
 
 .row::before {
@@ -62,19 +63,19 @@
   left: 0;
   width: 100%;
   height: 500px;
-  background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
-  transform: scaleY(-1);
+  background: linear-gradient(-45deg, transparent 40%, rgba(72, 218, 174, 0.651) 40%, rgba(153, 70, 179, 0.863) 60%, transparent 60%, transparent 80%, rgba(76, 187, 181, 0.61) 80%, rgba(219, 97, 203, 0.596) 100%);
+  transform: scaleY(-3);
   animation: wave-animation 2s linear infinite alternate;
   border-radius: 50px;
 }
 
 @keyframes wave-animation {
   0% {
-    transform: scaleY(-1) translateY(0);
+    transform: scaleY(-2) translateY(0);
   }
 
   100% {
-    transform: scaleY(-1) translateY(-50px);
+    transform: scaleY(-2) translateY(-50px);
   }
 }
 
@@ -85,8 +86,8 @@
   left: 0;
   width: 100%;
   height: 500px;
-  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
-  transform: scaleX(-1);
+  background: linear-gradient(45deg, transparent 40%, rgba(122, 233, 131, 0.5) 40%, rgba(166, 97, 187, 0.836) 60%, transparent 60%, transparent 80%, rgba(99, 224, 203, 0.822) 80%, rgba(176, 63, 211, 0.521) 100%);
+  transform: scaleX(-3);
   animation: wave-animation 2s linear infinite alternate;
   border-radius: 50px;
 }
@@ -114,7 +115,7 @@ main {
   overflow: hidden;
   position: relative;
   transition: all 0.5s ease;
-  left: 10px;
+  left: 20px;
   z-index: 1;
   width: 100px;
   height: 500px;
@@ -128,7 +129,8 @@ main {
 /* Estilos para el contenido en el main */
 .content {
   position: relative;
-  z-index: 2; /* Asegura que el contenido esté por encima del sidebar */
+  z-index: 2;
+  /* Asegura que el contenido esté por encima del sidebar */
   animation: slideInUp 0.5s;
   animation-delay: 0.1s;
 }
@@ -145,13 +147,15 @@ main {
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  margin-left: auto; /* Ajusta el margen izquierdo para centrar el elemento horizontalmente */
+  margin-left: auto;
+  /* Ajusta el margen izquierdo para centrar el elemento horizontalmente */
   border-radius: 50px;
-  z-index: 1; /* Ajusta el z-index para que el top-row esté por encima de otros elementos */
+  z-index: 1;
+  /* Ajusta el z-index para que el top-row esté por encima de otros elementos */
   overflow: hidden;
   width: 180px;
   height: 70px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
   border: 3px solid #9b36afd3;
   shape-outside: margin-box 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -160,6 +164,7 @@ main {
   width: 200px;
   height: 200px;
 }
+
 .top-row ::deep a,
 .top-row .btn-link {
   white-space: nowrap;
@@ -185,29 +190,39 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 300px; /* Asegura que el contenedor ocupe al menos el alto especificado */
-  border-radius: 30px; /* Redondea las esquinas del contenedor */
-  overflow: hidden; /* Evita que el contenido se desborde */
+  min-height: 300px;
+  /* Asegura que el contenedor ocupe al menos el alto especificado */
+  border-radius: 30px;
+  /* Redondea las esquinas del contenedor */
+  overflow: hidden;
+  /* Evita que el contenido se desborde */
 }
 
 .container .center-content {
-  text-align: center; /* Centrar contenido en horizontal */
-  margin: auto; /* Centrar contenido en horizontal */
+  text-align: center;
+  /* Centrar contenido en horizontal */
+  margin: auto;
+  /* Centrar contenido en horizontal */
 }
 
 .contain {
   display: flex;
-  justify-content:end;
+  justify-content: end;
   margin-top: 0px;
-  align-items:end;
-  min-height: 300px; /* Asegura que el contenedor ocupe al menos el alto especificado */
-  border-radius: 30px; /* Redondea las esquinas del contenedor */
-  overflow: hidden; /* Evita que el contenido se desborde */
+  align-items: end;
+  min-height: 300px;
+  /* Asegura que el contenedor ocupe al menos el alto especificado */
+  border-radius: 30px;
+  /* Redondea las esquinas del contenedor */
+  overflow: hidden;
+  /* Evita que el contenido se desborde */
 }
 
 .contain .center-content {
-  text-align: center; /* Centrar contenido en horizontal */
-  margin-top: 0px; /* Centrar contenido en horizontal */
+  text-align: center;
+  /* Centrar contenido en horizontal */
+  margin-top: 0px;
+  /* Centrar contenido en horizontal */
 }
 
 @media (max-width: 640.98px) {
@@ -240,19 +255,21 @@ main {
 
 .center-row {
   margin-top: 80px;
-  background-color: #fffafa;
+  background-color: #3fd4b4bb;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto; /* Ajusta el margen izquierdo para centrar el elemento horizontalmente */
-  margin-right: 51px; /* Ajusta el margen derecho para centrar el elemento horizontalmente */
+  margin-left: auto;
+  /* Ajusta el margen izquierdo para centrar el elemento horizontalmente */
+  margin-right: 51px;
+  /* Ajusta el margen derecho para centrar el elemento horizontalmente */
   margin-bottom: 129px;
   border-radius: 100px;
   overflow: hidden;
   width: 500px;
   height: 400px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  border: 2px solid #dddddd;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
+  border: 6px solid #26ca41ab;
 }
 
 .h3 {
@@ -273,25 +290,12 @@ main {
   padding: 10px;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
+.custom-style {
+  background-color: #e40f0ffa;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0px 10px 100px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
 }
 
 @media (min-width: 641px) {
@@ -308,8 +312,8 @@ main {
   }
 
   .sidebar {
-    width: 200px;
-    height: 100vh;
+    width: 220px;
+    height: 629px;
     position: sticky;
     top: 0;
   }
@@ -331,4 +335,4 @@ main {
     padding-left: 2rem !important;
     padding-right: 1.5rem !important;
   }
-} 
+}

@@ -1,26 +1,71 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject SweetAlertService Swal
+@using System.Threading.Tasks
 
-<div Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+<div Style="animation: slideInLeft 0.9s; animation-delay: 0.1s;">
     <AuthorizeView>
-        <Authorized>    
-            <a method="get" href="Identity/Account/Manage" class="oi oi-person text-primary nav-link btn btn-link"> Perfil</a>
+        <Authorized>
+            <a method="get" href="Identity/Account/Manage" class="oi oi-person text-primary nav-link btn btn-link">
+                Perfil</a>
             <form method="post" action="Identity/Account/LogOut">
-                <button type="submit" class="oi oi-account-logout  text-primary nav-link btn btn-link" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
+                <button type="submit" class="oi oi-account-logout  text-primary nav-link btn btn-link"
+                    Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
                     <i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar seccion</button>
             </form>
         </Authorized>
         <NotAuthorized>
+            <img src="logo.png" width="260" height="200"
+                Style="animation: slideInLeft 0.9s; animation-delay: 0.1s; box-shadow: 0px 9px 16px rgba(0, 0, 0, 0.2); border-radius: 50px;" />
+            <br />
+            <br />
             <div class="center-container">
-                <a type="button" class="btn btn-success h3" href="Identity/Account/Login"
-                    Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Iniciar seccion</a>
-                <h5>
+                <a type="button" class="btn btn-success h3 btn-lg" href="Identity/Account/Login" Style="animation: slideInRight 0.5s; animation-delay: 0.50s;  margin-left: 77px; border-radius: 30px;
+                overflow: hidden; box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2); border-radius: 50px; text-shadow: 1px 1px 2px black;">Iniciar
+                    seccion</a>
+                <div class="text-shadow" style="margin-left: 20px; text-shadow: 1px 1px 2px black;">
                     <br />
-                    <br>
-                    No tienes una cuenta?<a class="h5" href="Identity/Account/Register"
-                        Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">Registrate.</a>
-                </h5>
+                    <h5>
+                        <strong style="color:rgb(0, 132, 255); text-shadow: 1px 1px 2px black;">No tienes una cuenta?</strong><a class="h5"
+                            href="Identity/Account/Register"
+                            Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;"><strong style="color:rgb(0, 132, 255); text-shadow: 1px 1px 2px black;">Registrate.</strong></a>
+                    </h5>
+                </div>
             </div>
         </NotAuthorized>
     </AuthorizeView>
 </div>
 
+@code {
+
+    private bool showCancelButton = false;
+
+    /* Notificion de inicio */
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(1460);
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Bienvenido!",
+                Text = "Inicia seccion para ingresar al sistema.",
+                Icon = SweetAlertIcon.Success,
+                ShowCancelButton = showCancelButton
+            });
+        }
+
+        showCancelButton = true;
+
+        if(showCancelButton == true)
+        {
+            await Task.Delay(500);
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+            {
+                Title = "Ojo!",
+                Text = "Si no tienes una cuenta, puedes presionar el link 'Registrarte', para optener una cuenta y acceder al sistema.",
+                Icon = SweetAlertIcon.Info,
+                ShowCancelButton = false
+            });
+        }
+    }
+}
