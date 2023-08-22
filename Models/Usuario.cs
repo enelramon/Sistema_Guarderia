@@ -1,7 +1,6 @@
-public class usuario
-{ 
-    #nullable disable
 
+public class usuario
+{
     public int usuarioId { get; set; }
 
     public string Correo { get; set; }
@@ -9,6 +8,5 @@ public class usuario
     public string Contraseña { get; set; }
 
     public bool Visible { get; set; }
-
 
 }

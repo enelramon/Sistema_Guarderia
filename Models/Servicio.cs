@@ -2,10 +2,8 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-#nullable disable // Para quitar el aviso de nulls
 namespace Sistema_Guarderia.Models
 {
-
     public class Servicio //Entidad
     {
         [Key]

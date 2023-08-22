@@ -11,7 +11,7 @@ using Sistema_Guarderia.Contexto;
 namespace Sistema_Guarderia.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230818141520_Inicial")]
+    [Migration("20230822021725_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />

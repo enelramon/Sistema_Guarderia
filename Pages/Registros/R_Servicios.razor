@@ -1,9 +1,9 @@
-@page "/RServicios"
+@page "/R_Servicios"
 @inject ServiciosBLL serviciosBLL
 @inject NotificationService notification
 @inject SweetAlertService Swal
 
-<RadzenForm Model="@servicio" Submit="@Guardar">
+<EditForm Model="@servicio" OnValidSubmit="@Guardar">
 
   @*Esta linea de html se utilizar para la verificacion de una navegacion sin realizar un guardado.
   Esta implementacion se alimenta de un metodo de verificacion de campos. Al realizar una navegacion,
@@ -31,14 +31,12 @@
               <RadzenLabel Text="Nombre del servicio:" Style="margin-right: 10px;" />
               <RadzenTextBox @bind-Value="servicio.NombreServicio" Class="rounded-pill custom-animation" />
             </div>
-            <RadzenRequiredValidator Text="El nombre del servicio es obligatorio" Component="servicio.NombreServicio" />
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-center">
               <RadzenLabel Text="Fecha:" Style="margin-right: 10px;" />
               <RadzenDatePicker @bind-Value="servicio.FechaServicio" Class="rounded-pill custom-animation" />
             </div>
-            <RadzenRequiredValidator Text="La fecha es obligatoria" Component="servicio.FechaNacimiento" />
           </div>
         </div>
         <br>
@@ -48,7 +46,6 @@
               <RadzenLabel Text="Precio del servicio:" Style="margin-right: 10px;" />
               <RadzenNumeric @bind-Value="servicio.PrecioServicio" Class="rounded-pill custom-animation" />
             </div>
-            <RadzenRequiredValidator Text="El precio es obligatorio" Component="servicio.PrecioServicio" />
           </div>
           <div class="col-md-6">
             <div class="d-flex align-items-center">
@@ -75,7 +72,7 @@
       </RadzenCard>
     </RadzenCard>
   </div>
-</RadzenForm>
+</EditForm>
 
 @code {
 
@@ -118,15 +115,19 @@
   }
   void Guardar()
   {
-    if (serviciosBLL.Guardar(servicio))
+    try
     {
-      Nuevo();
+      if (serviciosBLL.Guardar(servicio))
+      {
+        Nuevo();
 
-    }
-    else
-    {
+      }
+      else
+      {
 
+      }
     }
+    catch (Exception ex) {}
   }
   void Eliminar()
   {

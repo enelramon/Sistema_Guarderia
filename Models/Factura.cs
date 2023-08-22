@@ -1,39 +1,36 @@
- using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sistema_Guarderia.Models
-
 {
-    #nullable disable // Para quitar el aviso de nulls
-
- public class Factura
-{
-    public int FacturaId { get; set; }
-    public DateTime Fecha { get; set; }
-    public string Cliente { get; set; }
-    public List<ItemFactura> Items { get; set; }
-
-    public Factura()
+    public class Factura
     {
-        Items = new List<ItemFactura>();
-    }
+        public int FacturaId { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Cliente { get; set; }
+        public List<ItemFactura> Items { get; set; }
 
-    public decimal CalcularTotal()
-    {
-        decimal total = 0;
-        foreach (var item in Items)
+        public Factura()
         {
-            total += item.Precio * item.Cantidad;
+            Items = new List<ItemFactura>();
         }
-        return total;
-    }
-}
 
-public class ItemFactura
-{
-    public string Descripcion { get; set; }
-    public decimal Precio { get; set; }
-    public int Cantidad { get; set; }
-}
+        public decimal CalcularTotal()
+        {
+            decimal total = 0;
+            foreach (var item in Items)
+            {
+                total += item.Precio * item.Cantidad;
+            }
+            return total;
+        }
+    }
+
+    public class ItemFactura
+    {
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public int Cantidad { get; set; }
+    }
 }
