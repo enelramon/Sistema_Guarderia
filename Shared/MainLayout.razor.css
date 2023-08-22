@@ -16,11 +16,11 @@
   height: 500px;
   background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
   transform: scaleY(-1);
-  animation: wave-animation 2s linear infinite alternate;
+  animation: wave-animations 2s linear infinite alternate;
   border-radius: 50px;
 }
 
-@keyframes wave-animation {
+@keyframes wave-animations {
   0% {
     transform: scaleY(-1) translateY(0);
   }
@@ -39,7 +39,7 @@
   height: 500px;
   background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
   transform: scaleX(-1);
-  animation: wave-animation 2s linear infinite alternate;
+  animation: wave-animations 2s linear infinite alternate;
   border-radius: 50px;
 }
 
@@ -63,19 +63,19 @@
   left: 0;
   width: 100%;
   height: 500px;
-  background: linear-gradient(-45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
-  transform: scaleY(-1);
+  background: linear-gradient(-45deg, transparent 40%, rgba(72, 218, 174, 0.651) 40%, rgba(153, 70, 179, 0.863) 60%, transparent 60%, transparent 80%, rgba(76, 187, 181, 0.61) 80%, rgba(219, 97, 203, 0.596) 100%);
+  transform: scaleY(-3);
   animation: wave-animation 2s linear infinite alternate;
   border-radius: 50px;
 }
 
 @keyframes wave-animation {
   0% {
-    transform: scaleY(-1) translateY(0);
+    transform: scaleY(-2) translateY(0);
   }
 
   100% {
-    transform: scaleY(-1) translateY(-50px);
+    transform: scaleY(-2) translateY(-50px);
   }
 }
 
@@ -86,8 +86,8 @@
   left: 0;
   width: 100%;
   height: 500px;
-  background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.5) 60%, transparent 60%, transparent 80%, rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255, 0.5) 100%);
-  transform: scaleX(-1);
+  background: linear-gradient(45deg, transparent 40%, rgba(122, 233, 131, 0.5) 40%, rgba(166, 97, 187, 0.836) 60%, transparent 60%, transparent 80%, rgba(99, 224, 203, 0.822) 80%, rgba(176, 63, 211, 0.521) 100%);
+  transform: scaleX(-3);
   animation: wave-animation 2s linear infinite alternate;
   border-radius: 50px;
 }

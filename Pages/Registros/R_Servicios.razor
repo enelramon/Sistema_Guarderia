@@ -3,9 +3,21 @@
 @inject NotificationService notification
 @inject SweetAlertService Swal
 
-<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
-
 <RadzenForm Model="@servicio" Submit="@Guardar">
+
+  @*Esta linea de html se utilizar para la verificacion de una navegacion sin realizar un guardado.
+  Esta implementacion se alimenta de un metodo de verificacion de campos. Al realizar una navegacion,
+  el metodo determina si los campos son igual a 0 (null) o si es mayor a 0. Si es igual a 0, podra realizar la
+  navegacion.
+  Pero si los campos son mayor a 0 y no a realizado un guardado, lanzara una notifiacion para validar si desea salir o
+  no.*@
+
+  <NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+  @*Nota: si acepta salir de la pagina en donde se localiza a otra, la informacion que dijido se eliminara, ya que no
+  se realizo un guardado para
+  salvaguardar esos datos. Pero si es lo contrario, podra salir sin ningun problema.*@
+
   <div class="d-flex justify-content-center">
     <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
       <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
