@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-
-#nullable disable // Para quitar el aviso de nulls
  
 namespace Sistema_Guarderia.Models   
 {

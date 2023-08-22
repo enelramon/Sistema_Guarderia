@@ -10,8 +10,8 @@
 
     @*Esta linea de html se utilizar para la verificacion de una navegacion sin realizar un guardado.
     Esta implementacion se alimenta de un metodo de verificacion de campos. Al realizar una navegacion,
-    el metodo determina si los campos son igual a 0 (null) o si es mayor a 0. Si es igual a 0, podra realizar la
-    navegacion.
+    el metodo determina si los campos son igual a 0 (null) o si es mayor a 0. Si es igual a 0, podra realizar la navegacion.
+
     Pero si los campos son mayor a 0 y no a realizado un guardado, lanzara una notifiacion para validar si desea salir o
     no.*@
 
@@ -30,12 +30,11 @@
             <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
                 <div class="col-md-6">
                     <RadzenLabel Text="Nombre del cliente:" />
-                    <RadzenTextBox @bind-Value="cliente.Nombre" aria-required="true"
-                        Class="rounded-pill custom-animation" />
+                    <RadzenTextBox @bind-Value="cliente.Nombre" Class="rounded-pill custom-animation" required="true" />
                 </div>
                 <div class="col-md-6">
                     <RadzenLabel Text="Dirección:" />
-                    <RadzenTextBox @bind-Value="cliente.Direccion" aria-required="true"
+                    <RadzenTextBox @bind-Value="cliente.Direccion" required="true"
                         Class="rounded-pill custom-animation" />
                 </div>
             </div>
@@ -44,8 +43,7 @@
                 <div class="col-md-11">
                     <div class="d-flex justify-content-center">
                         <RadzenLabel Text="Lugar de trabajo:" />
-                        <RadzenTextBox @bind-Value="cliente.LugarTrabajo" aria-required="true"
-                            Class="rounded-pill custom-animation" />
+                        <RadzenTextBox @bind-Value="cliente.LugarTrabajo" Class="rounded-pill custom-animation" />
                     </div>
                 </div>
             </div>
@@ -54,13 +52,11 @@
                 <div class="col-md-6">
                     <RadzenLabel Text="Número de teléfono:" />
                     <RadzenTextBox @bind-Value="cliente.Telefono" Placeholder="Número de teléfono"
-                        Class="rounded-pill custom-animation" />
-                    <RadzenRequiredValidator Text="El número de teléfono es obligatorio" Component="cliente.Telefono" />
+                        Class="rounded-pill custom-animation" required="true" />
                 </div>
                 <div class="col-md-6">
                     <RadzenLabel Text="Fecha:" />
-                    <RadzenDatePicker @bind-Value="cliente.Fecha_Registro" aria-required="true"
-                        Class="rounded-pill custom-animation" />
+                    <RadzenDatePicker @bind-Value="cliente.Fecha_Registro" Class="rounded-pill custom-animation" />
                 </div>
             </div>
             <br />
@@ -121,13 +117,15 @@
                         Title = "Accion no completada",
                         Text = "La informacion no pudo encontrar",
                         Icon = SweetAlertIcon.Error,
-                        ShowCancelButton = false,
+                        ShowCancelButton = true
                     });
+
+                
             }
         }
         catch (Exception ex) { }
     }
-    async Task Nuevo()
+    public async Task Nuevo()
     {
         try
         {
@@ -149,13 +147,12 @@
                     });
             }
         }
-        catch (Exception ex){}
+        catch (Exception ex) {}
     }
 
     async Task Guardar()
     {
-        if (string.IsNullOrEmpty(cliente.Telefono) && string.IsNullOrEmpty(cliente.Direccion) &&
-        string.IsNullOrEmpty(cliente.LugarTrabajo))
+        if (string.IsNullOrEmpty(cliente.Nombre))
         {
             var resultado = await Swal.FireAsync(new SweetAlertOptions
                 {
@@ -165,8 +162,28 @@
                     ShowCancelButton = false,
                 });
         }
-        else if (!string.IsNullOrEmpty(cliente.Telefono) && !string.IsNullOrEmpty(cliente.Direccion) &&
-        !string.IsNullOrEmpty(cliente.LugarTrabajo))
+        else if (string.IsNullOrEmpty(cliente.Telefono))
+        {
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Accion no completada",
+                    Text = "La informacion se pudo guardar correctamente",
+                    Icon = SweetAlertIcon.Error,
+                    ShowCancelButton = false,
+                });
+        }
+        else if (string.IsNullOrEmpty(cliente.Direccion))
+        {
+            var resultado = await Swal.FireAsync(new SweetAlertOptions
+                {
+                    Title = "Accion no completada",
+                    Text = "La informacion se pudo guardar correctamente",
+                    Icon = SweetAlertIcon.Error,
+                    ShowCancelButton = false,
+                });
+        }
+        else if (string.IsNullOrEmpty(cliente.Nombre) && !string.IsNullOrEmpty(cliente.Telefono) &&
+        !string.IsNullOrEmpty(cliente.Direccion))
         {
             await Nuevo();
             var resultado = await Swal.FireAsync(new SweetAlertOptions
@@ -178,15 +195,14 @@
                 });
             clienteBLL.Guardar(cliente);
         }
-
     }
-    async Task Eliminar()
+    public async Task Eliminar()
     {
         try
         {
             if (clienteBLL.Eliminar(cliente.ClienteId))
             {
-                Nuevo();
+                await Nuevo();
                 var resultado = await Swal.FireAsync(new SweetAlertOptions
                     {
                         Title = "Accion completada",

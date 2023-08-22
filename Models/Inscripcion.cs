@@ -4,8 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sistema_Guarderia.Models
 {
-    #nullable disable // Para quitar el aviso de nulls
-
     public class Inscripcion
     {
         [Key]
@@ -18,7 +16,7 @@ namespace Sistema_Guarderia.Models
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "Ingrese la fecha de nacimiento")]
-        public DateTime FechaNacimiento { get; set; }
+        public DateTime? FechaNacimiento { get; set; }
 
         [Required(ErrorMessage = "Ingrese la dirección")]
         public string Direccion { get; set; }

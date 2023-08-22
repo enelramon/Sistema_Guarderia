@@ -1,8 +1,10 @@
 @page "/R_Inscripcion"
+@page "/R_Inscripcion/{InscripcionId:int}"
 
 @inject InscripcionBLL inscripcionBLL
 @inject NotificationService notification
 @inject SweetAlertService Swal
+@inject IJSRuntime js
 
 <RadzenForm Model="@inscripcion" Submit="@Guardar">
 
@@ -18,7 +20,7 @@
     @*Nota: si acepta salir de la pagina en donde se localiza a otra, la informacion que dijido se eliminara, ya que no
     se realizo un guardado para
     salvaguardar esos datos. Pero si es lo contrario, podra salir sin ningun problema.*@
-    
+
     <div class="d-flex justify-content-center">
         <RadzenCard Class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
             <RadzenCard class="shadow border border-3" Style="animation: slideInLeft 0.5s; animation-delay: 0.1s;">
@@ -31,38 +33,29 @@
                     <div class="col-md-4">
                         <RadzenLabel Text="Fecha:" />
                         <RadzenDatePicker @bind-Value="inscripcion.Fecha" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="La fecha es obligatoria" Component="inscripcion.Fecha" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Nombre:" />
                         <RadzenTextBox @bind-Value="inscripcion.Nombre" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El nombre es obligatorio" Component="inscripcion.Nombre" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Fecha de Nacimiento:" />
                         <RadzenDatePicker @bind-Value="inscripcion.FechaNacimiento"
                             Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="La fecha de nacimiento es obligatoria"
-                            Component="inscripcion.FechaNacimiento" />
                     </div>
                 </div>
                 <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
                     <div class="col-md-4">
                         <RadzenLabel Text="Dirección:" />
                         <RadzenTextBox @bind-Value="inscripcion.Direccion" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="La dirección es obligatoria" Component="inscripcion.Direccion" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Nombre de la Madre:" />
                         <RadzenTextBox @bind-Value="inscripcion.NombreMadre" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El nombre de la madre es obligatorio"
-                            Component="inscripcion.NombreMadre" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Teléfono de la Madre:" />
                         <RadzenTextBox @bind-Value="inscripcion.TelefonoMadre" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El teléfono de la madre es obligatorio"
-                            Component="inscripcion.TelefonoMadre" />
                     </div>
                 </div>
                 <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
@@ -70,20 +63,14 @@
                         <RadzenLabel Text="Lugar de Trabajo de la Madre:" />
                         <RadzenTextBox @bind-Value="inscripcion.LugarDeTrabajoMadre"
                             Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El lugar de trabajo de la madre es obligatorio"
-                            Component="inscripcion.LugarDeTrabajoMadre" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Nombre del Padre:" />
                         <RadzenTextBox @bind-Value="inscripcion.NombrePadre" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El nombre del padre es obligatorio"
-                            Component="inscripcion.NombrePadre" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Teléfono del Padre:" />
                         <RadzenTextBox @bind-Value="inscripcion.TelefonoPadre" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El teléfono del padre es obligatorio"
-                            Component="inscripcion.TelefonoPadre" />
                     </div>
                 </div>
                 <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
@@ -91,20 +78,14 @@
                         <RadzenLabel Text="Lugar de Trabajo del Padre:" />
                         <RadzenTextBox @bind-Value="inscripcion.LugarDeTrabajoPadre"
                             Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El lugar de trabajo del padre es obligatorio"
-                            Component="inscripcion.LugarDeTrabajoPadre" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Seguro Médico:" />
                         <RadzenTextBox @bind-Value="inscripcion.SeguroMedico" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El seguro médico es obligatorio"
-                            Component="inscripcion.SeguroMedico" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Nombre del Pediatra:" />
                         <RadzenTextBox @bind-Value="inscripcion.NombrePediatra" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El nombre del pediatra es obligatorio"
-                            Component="inscripcion.NombrePediatra" />
                     </div>
                 </div>
                 <div class="row" Style="animation: slideInLeft 0.5s; animation-delay: 0.2s;">
@@ -112,25 +93,18 @@
                         <RadzenLabel Text="Lugar de Trabajo del Pediatra:" />
                         <RadzenTextBox @bind-Value="inscripcion.LugarDeTrabajoPediatra"
                             Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El lugar de trabajo del pediatra es obligatorio"
-                            Component="inscripcion.LugarDeTrabajoPediatra" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Caso de Emergencia:" />
                         <RadzenTextBox @bind-Value="inscripcion.CasoDeEmergencia"
                             Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="El caso de emergencia es obligatorio"
-                            Component="inscripcion.CasoDeEmergencia" />
                     </div>
                     <div class="col-md-4">
                         <RadzenLabel Text="Padecimientos:" />
                         <RadzenTextBox @bind-Value="inscripcion.Padece" Class="rounded-pill custom-animation" />
-                        <RadzenRequiredValidator Text="Los padecimientos son obligatorios"
-                            Component="inscripcion.Padece" />
                     </div>
                 </div>
                 <div class="text-center mt-4">
-
                     <button type="button" class="btn btn-lg btn-primary rounded-lg custom-animation"
                         Style="animation: fadeIn 0.5s; animation-delay: 0.1s" @onclick="Nuevo" title="Nuevo servicio">
                         <span class="oi oi-file"> Nuevo</span>
@@ -152,6 +126,7 @@
 
 
 @code {
+
     [Parameter]
     public int InscripcionId { get; set; }
     private Inscripcion inscripcion = new Inscripcion();
@@ -194,10 +169,29 @@
 
         }
     }
-    void Nuevo()
+    async Task Nuevo()
     {
-        this.inscripcion = new Inscripcion();
-
+        try
+        {
+            if (!string.IsNullOrEmpty(inscripcion.Nombre) && !string.IsNullOrEmpty(inscripcion.LugarDeTrabajoMadre) &&
+            !string.IsNullOrEmpty(inscripcion.LugarDeTrabajoPadre) && !string.IsNullOrEmpty(inscripcion.LugarDeTrabajoPadre))
+            {
+                this.inscripcion = new Inscripcion();
+                await js.MostrarMensaje("Nuevo archivo creado correctamente", "La accion fue realizada correctamente",
+                TipoMensajeSweetAlert.success);
+            }
+            else
+            {
+                var resultado = await Swal.FireAsync(new SweetAlertOptions
+                    {
+                        Title = "Accion no completada",
+                        Text = "No se pudo realizar una lamina nueva",
+                        Icon = SweetAlertIcon.Error,
+                        ShowCancelButton = false,
+                    });
+            }
+        }
+        catch (Exception ex) { }
     }
     void Eliminar()
     {
@@ -224,6 +218,10 @@
         if (!string.IsNullOrEmpty(inscripcion.LugarDeTrabajoMadre))
             camposCompletos++;
         if (!string.IsNullOrEmpty(inscripcion.TelefonoMadre))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(inscripcion.LugarDeTrabajoPadre))
+            camposCompletos++;
+        if (!string.IsNullOrEmpty(inscripcion.LugarDeTrabajoPediatra))
             camposCompletos++;
         if (inscripcion.FechaNacimiento != null)
             camposCompletos++;
